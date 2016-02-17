@@ -1,4 +1,4 @@
-#Vendas Locaweb
+# Vendas Locaweb
 
 O sistema de Vendas Locaweb é responsável por manter uma base de dados com informações sobre produtos que são vendidos pelo time comercial, pedidos feitos pelo time comercial e os clientes atendidos por este time. Desta forma o time de Vendas Locaweb é capaz de oferecer produtos diferenciados para seus clientes, controlar os pedidos realizados e ter acesso rápido a dados de clientes.
 
