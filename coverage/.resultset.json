@@ -1,18 +1,18 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/timelocaweb7/workspace/vendas/spec/features/user/user_views_homepage_spec.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/spec/features/user/user_views_homepage_spec.rb": [
         1,
         null,
-        1,
-        1,
-        1,
+        0,
+        0,
+        0,
         null,
-        1,
+        0,
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/spec/rails_helper.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -41,16 +41,14 @@
         null,
         1,
         null,
-        1,
+        0,
         null,
-        1,
-        null,
-        null,
+        0,
         null,
         null,
-        1,
         null,
         null,
+        0,
         null,
         null,
         null,
@@ -63,22 +61,24 @@
         null,
         null,
         null,
-        1,
         null,
         null,
-        1,
+        0,
+        null,
+        null,
+        0,
         null,
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/environment.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/home/timelocaweb7/workspace/vendas/config/application.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/application.rb": [
         1,
         null,
         1,
@@ -101,12 +101,12 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/boot.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/home/timelocaweb7/workspace/vendas/config/environments/test.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/environments/test.rb": [
         1,
         null,
         null,
@@ -150,7 +150,7 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/assets.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -163,7 +163,7 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/backtrace_silencers.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -172,12 +172,12 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/cookies_serializer.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/devise.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/devise.rb": [
         null,
         null,
         1,
@@ -444,13 +444,13 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/filter_parameter_logging.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/inflections.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -468,18 +468,18 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/mime_types.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/session_store.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/simple_form.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/simple_form.rb": [
         null,
         1,
         null,
@@ -646,7 +646,7 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/initializers/wrap_parameters.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -662,29 +662,28 @@
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/config/routes.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/spec/factories/clients.rb": [
         1,
         1,
-        null
-      ],
-      "/home/timelocaweb7/workspace/vendas/app/helpers/application_helper.rb": [
         1,
-        null
-      ],
-      "/home/timelocaweb7/workspace/vendas/app/controllers/home_controller.rb": [
+        1,
+        1,
+        1,
         1,
         1,
         null,
         null
       ],
-      "/home/timelocaweb7/workspace/vendas/app/controllers/application_controller.rb": [
+      "/Users/timelocaweb2/Workspace/vendas/config/routes.rb": [
         1,
-        null,
-        null,
+        1,
+        null
+      ],
+      "/Users/timelocaweb2/Workspace/vendas/app/helpers/application_helper.rb": [
         1,
         null
       ]
     },
-    "timestamp": 1455734450
+    "timestamp": 1455737012
   }
 }
