@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :order do
-    status "MyString"
-    product "MyString"
-    client "MyString"
+    status "Aberto"
+    product "Produto"
+    client "Cliente"
   end
 end
