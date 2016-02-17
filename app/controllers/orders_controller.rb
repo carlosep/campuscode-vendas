@@ -16,12 +16,11 @@ class OrdersController < ApplicationController
     private
 
     def set_collections
-      @customers = Customers.all
       @user = User.all
     end
 
     def order_params
       params.require(:order)
-            .permit(:status, :product, :customer_id, :user_id)
+            .permit(:status, :product, :client, :user_id)
     end
   end
