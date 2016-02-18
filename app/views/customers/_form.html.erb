@@ -1,0 +1,25 @@
+<div class='form'>
+  <%= simple_form_for @customer do |f| %>
+    <div class='field'>
+      <%= f.input :name %>
+    </div>
+    <div class='field'>
+      <%= f.input :email %>
+    </div>
+    <div class='field'>
+      <%= f.input :phone %>
+    </div>
+    <div class='field'>
+      <%= f.input :cpf_cnpj %>
+    </div>
+    <div class='field'>
+      <%= f.input :address %>
+    </div>
+    <div class='field'>
+      <%= f.input :contact_name %>
+    </div>
+    <div class='submit-form'>
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
