@@ -1,9 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit]
-  before_action :set_order, only: [:show]
+  before_action :set_order, only: [:show, :edit, :update]
   respond_to :html
     def show
-      respond_with @order
     end
 
     def new
@@ -12,6 +11,14 @@ class OrdersController < ApplicationController
 
     def create
       @order = Order.create(order_params)
+      respond_with @order
+    end
+
+    def edit
+    end
+
+    def update
+      @order.update(order_params)
       respond_with @order
     end
 
