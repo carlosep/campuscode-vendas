@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :order do
+  factory :customer do
     name 'Bruno'
     email 'dev@campuscode.com.br'
     phone '12 3231221312'
