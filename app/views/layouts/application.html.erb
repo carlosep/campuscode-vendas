@@ -21,7 +21,6 @@
 
   <!-- Dropdown com detalhes da conta de usuário -->
   <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
-      <% if current_user %>
         <a href="#" class="ls-ico-user">
           <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
           <span class="ls-name"> <%= current_user.name%></span>
@@ -35,18 +34,6 @@
             <li><%= link_to 'Sair', destroy_user_session_path, method: 'DELETE' %></li>
            </ul>
         </nav>
-      <%else%>
-        <a href="#" class="ls-ico-user">
-          <span class="ls-name"> Usuário</span>
-        </a>
-
-        <nav class="ls-dropdown-nav ls-user-menu">
-          <ul>
-            <li><%= link_to 'Entrar', new_user_session_path %></li>
-            <li><%= link_to 'Registrar', new_user_registration_path %></li>
-           </ul>
-        </nav>
-      <%end%>
 
   </div>
   </div>
