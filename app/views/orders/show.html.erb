@@ -1,6 +1,7 @@
 <h2>Pedido <%= @order.id %></h2>
 <hr>
 <p><strong><%= t '.status'%></strong> <%= @order.status %></p>
+<p><strong><%= t '.user_name'%></strong> <%= @order.user.name %></p>
 <p><strong><%= t '.product'%></strong> <%= @order.product%></p>
 <p><strong><%= t '.customer'%></strong> <%= @order.customer.name%></p>
 <p><strong><%= t '.created_at'%></strong> <%= @order.created_at %></p>
