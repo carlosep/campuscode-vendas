@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :order do
     status "Aberto"
     product "Produto"
-    client "Cliente"
+    customer
+    user
   end
 end
