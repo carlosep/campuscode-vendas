@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_order, only: [:show, :edit, :update]
-  respond_to :html
     def show
     end
 
