@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160217194810) do
 
-  create_table "clients", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "address"
-    t.string   "cpf_cnpj"
-    t.string   "contact"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
