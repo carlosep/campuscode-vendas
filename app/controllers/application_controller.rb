@@ -1,8 +1,16 @@
+require 'application_responder'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
+  self.responder = ApplicationResponder
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+
   layout :login_layout
+
+  respond_to :html
 
   protected
 

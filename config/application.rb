@@ -14,6 +14,9 @@ Bundler.require(*Rails.groups)
 
 module Vendas
   class Application < Rails::Application
+    # Use the responders controller from the responders gem
+    config.app_generators.scaffold_controller :responders_controller
+
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales','model', '**', '*.{rb,yml}').to_s]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales','views', '**', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
