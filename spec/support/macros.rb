@@ -1,6 +1,6 @@
 module Macros
-  def login
-    user = create :user
+  def login(user = nil)
+    user = create :user unless user
 
     visit root_path
 
