@@ -18,5 +18,6 @@ describe 'User creates new order' do
     expect(page).to have_content order.status
     expect(page).to have_content order.product
     expect(page).to have_content order.customer.name
+    expect(page).to have_content order.user.name
   end
 end

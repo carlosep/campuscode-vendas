@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   protected
+  def user_admin
+    unless current_user.is_admin?
+      flash[:notice] = 'Você não é o administrador'
+      redirect_to root_path
+    end
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
