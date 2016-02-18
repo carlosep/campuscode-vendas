@@ -19,23 +19,20 @@
   <!-- Barra de Notificações -->
   <div class="ls-notification-topbar">
 
-  <!-- Dropdown com detalhes da conta de usuário -->
-  <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
-        <a href="#" class="ls-ico-user">
-          <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
-          <span class="ls-name"> <%= current_user.name%></span>
-          (<%= current_user.email%>)
-        </a>
-        <nav class="ls-dropdown-nav ls-user-menu">
-          <ul>
-            <li><a href="#">Meus dados</a></li>
-            <li><a href="#">Faturas</a></li>
-            <li><a href="#">Planos</a></li>
-            <li><%= link_to 'Sair', destroy_user_session_path, method: 'DELETE' %></li>
-           </ul>
-        </nav>
+    <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
+      <a href="#" class="ls-ico-user">
+        <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
+        <span class="ls-name"> <%= current_user.name%></span>
+        (<%= current_user.email%>)
+      </a>
 
-  </div>
+      <nav class="ls-dropdown-nav ls-user-menu">
+        <ul>
+          <li><%= link_to 'Meus dados', current_user %></li>
+          <li><%= link_to 'Sair', destroy_user_session_path, method: 'DELETE' %></li>
+         </ul>
+      </nav>
+    </div>
   </div>
 
   <span class="ls-show-sidebar ls-ico-menu"></span>
@@ -44,7 +41,7 @@
 
   <!-- Nome do produto/marca com sidebar -->
   <h1 class="ls-brand-name">
-    <a href="home" class="ls-ico-earth">
+    <a href="/" class="ls-ico-earth">
       <small>CampusCode</small>
       Venda de Produtos
     </a>
