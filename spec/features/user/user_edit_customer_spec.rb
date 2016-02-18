@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'Salesman edits customer' do
   scenario 'Successfully' do
     customer = create(:customer)
+    login
     new_customer = build(:customer, name: 'Gabriel', phone: '11 989314294',
                          address: 'Diadema', contact_name: 'Gabriel',
                          email: 'gabriel@gmail.com', cpf_cnpj: '1234512311232')
