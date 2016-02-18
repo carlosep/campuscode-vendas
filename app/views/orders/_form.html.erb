@@ -1,0 +1,15 @@
+<div id="errors">
+<% if @order.errors.any? %>
+<ul>
+  <% @order.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+</div>
+<%= simple_form_for @order do |f| %>
+  <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'] %>
+  <%= f.association :customer %>
+  <%= f.input :product %>
+  <%= f.button :submit %>
+<% end %>
