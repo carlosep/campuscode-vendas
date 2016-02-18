@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe 'Salesman registers a new user' do
   scenario 'successfully' do
+    login
     customer = create(:customer)
+
 
     visit new_customer_path
 
@@ -26,7 +28,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'and failure when forget to fill some fields' do
+    login
     visit new_customer_path
+
 
     click_on 'Save'
 
@@ -36,7 +40,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'and failure when forget to fill Name fields' do
+    login
     visit new_customer_path
+
 
     click_on 'Save'
 
@@ -44,7 +50,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'and failure when forget to fill Phone fields' do
+    login
     visit new_customer_path
+
 
     click_on 'Save'
 
@@ -52,7 +60,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'and failure when forget to fill Email fields' do
+    login
     visit new_customer_path
+
 
     click_on 'Save'
 
@@ -60,7 +70,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'and failure when forget to fill Address fields' do
+    login
     visit new_customer_path
+
 
     click_on 'Save'
 
@@ -68,7 +80,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'and failure when forget to fill cpf_cnpj fields' do
+    login
     visit new_customer_path
+
 
     click_on 'Save'
 
@@ -76,7 +90,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'and failure when forget to fill contact_name fields' do
+    login
     visit new_customer_path
+
 
     click_on 'Save'
 
@@ -84,7 +100,9 @@ describe 'Salesman registers a new user' do
   end
 
   scenario 'Failure with invalid email' do
+    login
     customer = create(:customer)
+
 
     visit new_customer_path
 
