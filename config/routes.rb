@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :orders, only: [:new, :create, :show, :edit, :update]
   resources :customers, only: [:new, :create, :show, :edit, :update]
-  resources :users, only: [:show]
+  resources :users, except: [:destroy]
 end
