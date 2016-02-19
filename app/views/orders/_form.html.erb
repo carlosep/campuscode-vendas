@@ -8,7 +8,7 @@
 <% end %>
 </div>
 <%= simple_form_for @order do |f| %>
-  <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'] %>
+  <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
   <%= f.association :customer %>
   <%= f.input :product %>
   <%= f.button :submit %>
