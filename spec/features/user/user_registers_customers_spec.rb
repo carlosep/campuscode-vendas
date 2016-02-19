@@ -163,24 +163,4 @@ describe 'Salesman registers a new customer' do
     expect(page).to have_css :span, 'Cpf cnpj is invalid'
     expect(current_path).to_not eq(customers_path(customer))
   end
-
-  scenario 'and receive email confirmation' do
-    customer = build(:customer)
-    login
-
-    visit new_customer_path
-
-    fill_in Customer.human_attribute_name(:name),         with: customer.name
-    fill_in Customer.human_attribute_name(:email),        with: customer.email
-    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
-    fill_in Customer.human_attribute_name(:address),      with: customer.address
-    fill_in Customer.human_attribute_name(:cpf_cnpj),
-    with: '12345678901234'
-    fill_in Customer.human_attribute_name(:contact_name),
-    with: customer.contact_name
-
-    click_on 'Save'
-
-    expect(ActionMailer::Base.deliveries.count).to eq 1
-  end
 end
