@@ -1,3 +1,4 @@
 en:
   hello: "Hello world"
-  create_user: Cadastrar Vendedor
+  create_user_seller: Cadastrar Vendedor
+  create_user_admin: Cadastrar Administrador
