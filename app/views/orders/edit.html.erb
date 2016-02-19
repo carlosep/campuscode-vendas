@@ -1,19 +1,9 @@
 <h1>Editar Pedido</h1>
 <section id="order_form">
 <%= simple_form_for @order do |f| %>
-  <% if @order.status == 'Concluído' && !current_user.is_admin? %>
-    <label class="ls-label">
-      <%= f.input :status, collection: ['Concluído'], default: 'Concluído' %>
-    </label>
-  <% elseif @order.status == 'Cancelado' && !current_user.is_admin? %>
-    <label class="ls-label">
-      <%= f.input :status, collection: ['Cancelado'], default: 'Cancelado' %>
-    </label>
-  <% else %>
-    <label class="ls-label">
-      <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
-    </label>
-  <% end %>
+  <label class="ls-label">
+    <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
+  </label>
 <% end %>
 </section>
 <%= render 'form'%>
