@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.create(customer_params)
-    CustomerMailer.welcome_email(@customer)
+    CustomerMailer.welcome_email(@customer).deliver_now
     respond_with @customer
   end
 
