@@ -12,7 +12,7 @@ describe 'Admin creates a new admin' do
     fill_in 'user[email]', with: user.email
     check 'user[is_admin]'
 
-    click_on 'Cadastrar Vendedor'
+    click_on I18n.t(:create_user)
 
     expect(page).to have_content user.name
     expect(page).to have_content user.email
