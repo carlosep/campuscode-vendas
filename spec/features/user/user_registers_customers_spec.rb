@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Salesman registers a new user' do
+describe 'Salesman registers a new customer' do
   scenario 'successfully' do
     login
     customer = create(:customer)
@@ -162,5 +162,26 @@ describe 'Salesman registers a new user' do
     expect(page).to_not have_content '12345678901234'
     expect(page).to have_css :span, 'Cpf cnpj is invalid'
     expect(current_path).to_not eq(customers_path(customer))
+  end
+
+  scenario 'and sends confirmation mail' do
+    sent_count = ActionMailer::Base.deliveries.count
+    login
+    customer = build(:customer)
+
+    visit new_customer_path
+
+    fill_in Customer.human_attribute_name(:name),         with: customer.name
+    fill_in Customer.human_attribute_name(:email),        with: customer.email
+    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
+    fill_in Customer.human_attribute_name(:address),      with: customer.address
+    fill_in Customer.human_attribute_name(:cpf_cnpj),
+    with: customer.cpf_cnpj
+    fill_in Customer.human_attribute_name(:contact_name),
+    with: customer.contact_name
+
+    click_on 'Save'
+
+    expect(ActionMailer::Base.deliveries.count).to eq sent_count + 1
   end
 end
