@@ -7,9 +7,11 @@
 </ul>
 <% end %>
 </div>
+<section id="order_form">
 <%= simple_form_for @order do |f| %>
   <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
-  <%= f.association :customer %>
+  <%= f.association :customer, selected: 1 %>
   <%= f.input :product %>
   <%= f.button :submit %>
 <% end %>
+</section>
