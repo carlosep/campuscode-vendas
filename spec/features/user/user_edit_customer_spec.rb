@@ -6,7 +6,7 @@ feature 'Salesman edits customer' do
     login
     new_customer = build(:customer, name: 'Gabriel', phone: '11 989314294',
                          address: 'Diadema', contact_name: 'Gabriel',
-                         email: 'gabriel@gmail.com', cpf_cnpj: '1234512311232')
+                         email: 'gabriel@gmail.com', cpf_cnpj: '36476847163')
 
     visit edit_customer_path(customer)
 
