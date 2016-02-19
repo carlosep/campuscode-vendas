@@ -4,7 +4,7 @@ describe 'Salesman registers a new customer without a contact name' do
   scenario 'successfully' do
     login
 
-    customer = create(:customer)
+    customer = build(:customer)
 
     visit new_customer_path
 
@@ -27,7 +27,7 @@ describe 'Salesman registers a new customer without a contact name' do
   scenario 'and is mandatory to fill contact name when registers a company' do
     login
 
-    customer = create(:customer, cpf_cnpj: '86584402000104')
+    customer = build(:customer, cpf_cnpj: '86584402000104')
 
     visit new_customer_path
 
