@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: :show
-  before_action :user_admin
+  before_action :user_admin, only: [:new, :create]
 
   def show
     @user = User.find(params[:id])

@@ -1,14 +1,14 @@
-<h2 class="ls-title-intro ls-ico-user">Criar Vendedor</h2>
+<h2 class="ls-title-intro ls-ico-user">t :create_seller</h2>
 
 <%= simple_form_for @user do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <label class="ls-label">
-      <%= f.input :name, required: true, autofocus: true, class: 'ls-login-bg-user ls-field-lg', label_html: { class: 'ls-label-text ls-hidden-accessible' }, placeholder: 'Nome'  %>
+      <%= f.input :name, required: true, autofocus: true, class: 'ls-login-bg-user ls-field-lg', label_html: { class: 'ls-label-text ls-hidden-accessible' }, placeholder: t(:name)  %>
     </label>
     <label class="ls-label">
-      <%= f.input :email, required: true, class: 'ls-login-bg-user ls-field-lg', label_html: { class: 'ls-label-text ls-hidden-accessible' }, placeholder: 'Email'  %>
+      <%= f.input :email, required: true, class: 'ls-login-bg-user ls-field-lg', label_html: { class: 'ls-label-text ls-hidden-accessible' }, placeholder: t(:email)  %>
     </label>
     <label class="ls-label">
       <%= f.input :is_admin, class: 'ls-login-bg-user ls-field-checkbox' %>
@@ -16,6 +16,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, t(:create_user_seller), class: 'ls-btn-primary ls-btn-block ls-btn-lg' %>
+    <%= f.button :submit, t(:create_user_button), class: 'ls-btn-primary ls-btn-block ls-btn-lg' %>
   </div>
 <% end %>
