@@ -1,0 +1,9 @@
+en:
+  users:
+    new:
+      create_user_button: Create
+      create_user: Create User
+      create_seller: Create Seller
+      name: Name
+      email: Email
+    show:

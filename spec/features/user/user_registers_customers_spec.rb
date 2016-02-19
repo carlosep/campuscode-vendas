@@ -5,7 +5,6 @@ describe 'Salesman registers a new user' do
     login
     customer = create(:customer)
 
-
     visit new_customer_path
 
     fill_in Customer.human_attribute_name(:name),         with: customer.name
@@ -119,5 +118,49 @@ describe 'Salesman registers a new user' do
 
     expect(page).to_not have_content 'a%2@'
     expect(page).to have_css :span, 'Email is invalid'
+  end
+
+  scenario 'Failure when fill with invalid cpf' do
+    customer = create(:customer)
+    login
+
+    visit new_customer_path
+
+    fill_in Customer.human_attribute_name(:name),         with: customer.name
+    fill_in Customer.human_attribute_name(:email),        with: customer.email
+    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
+    fill_in Customer.human_attribute_name(:address),      with: customer.address
+    fill_in Customer.human_attribute_name(:cpf_cnpj),
+    with: '11111111111'
+    fill_in Customer.human_attribute_name(:contact_name),
+    with: customer.contact_name
+
+    click_on 'Save'
+
+    expect(page).to_not have_content '11111111111'
+    expect(page).to have_css :span, 'Cpf cnpj is invalid'
+    expect(current_path).to_not eq(customers_path(customer))
+  end
+
+  scenario 'Failure when fill with invalid cnpj' do
+    customer = create(:customer)
+    login
+
+    visit new_customer_path
+
+    fill_in Customer.human_attribute_name(:name),         with: customer.name
+    fill_in Customer.human_attribute_name(:email),        with: customer.email
+    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
+    fill_in Customer.human_attribute_name(:address),      with: customer.address
+    fill_in Customer.human_attribute_name(:cpf_cnpj),
+    with: '12345678901234'
+    fill_in Customer.human_attribute_name(:contact_name),
+    with: customer.contact_name
+
+    click_on 'Save'
+
+    expect(page).to_not have_content '12345678901234'
+    expect(page).to have_css :span, 'Cpf cnpj is invalid'
+    expect(current_path).to_not eq(customers_path(customer))
   end
 end
