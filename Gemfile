@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 3.5', '>= 3.5.5'
 gem 'responders', '~> 2.1', '>= 2.1.1'
 gem 'simple_form'
+gem 'validates_cpf_cnpj'
 
 group :development, :test do
   gem 'pry-rails'
