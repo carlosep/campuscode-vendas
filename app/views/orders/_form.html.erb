@@ -9,9 +9,16 @@
 </div>
 <section id="order_form">
 <%= simple_form_for @order do |f| %>
-  <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
-  <%= f.association :customer, selected: 1 %>
-  <%= f.input :product %>
-  <%= f.button :submit %>
+  <div class="form-inputs">
+    <label class="ls-label">
+      <%= f.association :customer, selected: 1 %>
+    </label>
+    <label class="ls-label">
+      <%= f.input :product %>
+    </label>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 <% end %>
 </section>

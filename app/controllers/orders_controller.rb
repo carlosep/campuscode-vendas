@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_order, only: [:show, :edit, :update]
   before_action :user_admin, only: [:edit, :update]
+  before_action :set_status, only: [:create]
   def show
   end
 
@@ -26,6 +27,10 @@ class OrdersController < ApplicationController
 
   def set_collections
     @customer = Customer.all
+  end
+
+  def set_status
+    params[:order][:status] = 'Aberto'
   end
 
   def set_order
