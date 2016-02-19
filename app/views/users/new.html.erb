@@ -10,6 +10,9 @@
     <label class="ls-label">
       <%= f.input :email, required: true, class: 'ls-login-bg-user ls-field-lg', label_html: { class: 'ls-label-text ls-hidden-accessible' }, placeholder: 'Email'  %>
     </label>
+    <label class="ls-label">
+      <%= f.input :is_admin, class: 'ls-login-bg-user ls-field-checkbox' %>
+    </label>
   </div>
 
   <div class="form-actions">
