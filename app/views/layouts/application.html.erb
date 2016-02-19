@@ -58,19 +58,9 @@
 
     <nav class="ls-menu">
       <ul>
-         <li><a href="/locawebstyle/documentacao/exemplos/painel1/home" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
-         <li><a href="/locawebstyle/documentacao/exemplos/painel1/clients" class="ls-ico-users" title="Clientes">Clientes</a></li>
-         <li><a href="/locawebstyle/documentacao/exemplos/painel1/stats" class="ls-ico-stats" title="Relatórios da revenda">Relatórios da revenda</a></li>
-         <li>
-          <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
-          <ul>
-            <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-domain">Domínios da Revenda</a></li>
-            <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-email">E-mail de Remetente</a></li>
-            <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-aspect">Aparência</a></li>
-            <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-answer">Atendimento</a></li>
-            <li><a href="/locawebstyle/documentacao/exemplos/painel1/config-api">Chave de acesso para API</a></li>
-          </ul>
-        </li>
+        <li> <%= link_to t(:create_user), new_user_path, class: 'ls-ico-users' if current_user.is_admin? %></li>
+        <li> <%= link_to t(:create_customer), new_customer_path, class: 'ls-ico-user' %></li>
+        <li> <%= link_to t(:create_order), new_order_path, class: 'ls-ico-cart' %></li>
       </ul>
     </nav>
 
@@ -80,8 +70,8 @@
 
   <main class="ls-main ">
     <div class="container-fluid">
-      <span class="error_message"><%= flash[:alert] %></span>
-      <span class="error_message"><%= flash[:notice] %></span>
+      <span class="ls-alert-warning col-xs-12"><%= flash[:alert] %></span>
+      <span class="ls-alert-success col-xs-12"><%= flash[:notice] %></span>
       <%= yield %>
     </div>
       </main>
