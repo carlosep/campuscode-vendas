@@ -4,7 +4,7 @@ describe 'Salesman registers a new customer without a contact name' do
   scenario 'successfully' do
     login
 
-    custumer = create(:customer)
+    customer = create(:customer)
 
     visit new_customer_path
 

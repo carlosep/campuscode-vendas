@@ -1,4 +1,4 @@
-FatoryGirl.define do
+FactoryGirl.define do
   factory :customer do
     name 'Bruno'
     email 'dev@campuscode.com.br'
