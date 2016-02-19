@@ -4,7 +4,7 @@ FactoryGirl.define do
     email 'dev@campuscode.com.br'
     phone '12 3231221312'
     address 'Av alameda'
-    cpf_cnpj '36476847163'
+    cpf_cnpj '81239932006'
     contact_name 'Bruno'
   end
 end
