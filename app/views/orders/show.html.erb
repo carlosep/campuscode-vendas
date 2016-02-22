@@ -7,16 +7,16 @@
   <strong><%= t '.created_at'%>:</strong> <%= @order.created_at %><br><br>
 </span>
 <% if current_user %>
-  <% if current_user.is_admin? %>
-    <%= button_to 'Concluir Pedido', order_status_order_path(@order,
-                                          type: 'finish'), method: :put %>
-    <%= button_to 'Cancelar Pedido', order_status_order_path(@order,
-                                          type: 'cancel'), method: :put %>
-    <%= button_to 'Editar Pedido', edit_order_path(@order) %>
-  <% elsif @order.status == 'Aberto' %>
-    <%= button_to 'Concluir Pedido', order_status_order_path(@order,
-                                            type: 'finish'), method: :put %>
-    <%= button_to 'Cancelar Pedido', order_status_order_path(@order,
-                                            type: 'cancel'), method: :put %>
+  <% if current_user.is_admin? || @order.status == 'Aberto'%>
+    <%= button_to 'Concluir Pedido',
+        order_status_order_path(@order, type: 'finish'),
+        method: :put, class: 'ls-btn-primary ls-btn-block ls-btn-lg'%>
+    <br>
+    <%= button_to 'Cancelar Pedido',
+        order_status_order_path(@order, type: 'cancel'),
+        method: :put, class: 'ls-btn-primary ls-btn-block ls-btn-lg'%>
+    <br>
   <% end %>
+  <%= button_to 'Editar Pedido', edit_order_path(@order),
+      class: 'ls-btn-primary ls-btn-block ls-btn-lg' if current_user.is_admin?%>
 <% end %>
