@@ -23,17 +23,18 @@ class OrdersController < ApplicationController
   end
 
   def order_status
-   type = params[:type]
-   if type == 'finish'
-    @order.status = 'Concluído'
-     redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
-   elsif type == 'cancel'
-    @order.status = 'Cancelado'
-     redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
-   else
-     redirect_to :back, notice: 'Nothing happened.'
-   end
-   @order.save
+    type = params[:type]
+    if type == 'finish'
+      @order.status = 'Concluído'
+      CustomerMailer.conclusion_email(@order).deliver_now
+      redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
+    elsif type == 'cancel'
+      @order.status = 'Cancelado'
+      redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+    @order.save
  end
 
   private
