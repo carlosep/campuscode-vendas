@@ -61,7 +61,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = 'ls-btn-primary ls-btn-block ls-btn-lg'
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -122,14 +122,7 @@ SimpleForm.setup do |config|
   # Collection of methods to detect if a file type was given.
   # config.file_methods = [ :mounted_as, :file?, :public_filename ]
 
-  # Custom mappings for input types. This should be a hash containing a regexp
-  # to match as key, and the input type that will be used when the field name
-  # matches the regexp as value.
-  # config.input_mappings = { /count/ => :integer }
-
-  # Custom wrappers for input types. This should be a hash containing an input
-  # type as key and the wrapper that will be used for all inputs with specified type.
-  # config.wrapper_mappings = { string: :prepend }
+  # Custom mappings for inpProduct = { string: :prepend }
 
   # Namespaces where SimpleForm should look for custom input classes that
   # override default inputs.

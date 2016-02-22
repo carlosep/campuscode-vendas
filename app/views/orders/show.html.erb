@@ -5,3 +5,17 @@
 <p><strong><%= t '.product'%></strong> <%= @order.product%></p>
 <p><strong><%= t '.customer'%></strong> <%= @order.customer.name%></p>
 <p><strong><%= t '.created_at'%></strong> <%= @order.created_at %></p>
+<% if current_user %>
+  <% if current_user.is_admin? %>
+    <%=link_to 'Concluir Pedido', order_status_order_path(@order,
+                                          type: 'finish'), method: :put %>
+    <%=link_to 'Cancelar Pedido', order_status_order_path(@order,
+                                          type: 'cancel'), method: :put %>
+    <%= link_to 'Editar Pedido', edit_order_path(@order) %>
+  <% elsif @order.status == 'Aberto' %>
+    <%=link_to 'Concluir Pedido', order_status_order_path(@order,
+                                            type: 'finish'), method: :put %>
+    <%=link_to 'Cancelar Pedido', order_status_order_path(@order,
+                                            type: 'cancel'), method: :put %>
+  <% end %>
+<% end %>
