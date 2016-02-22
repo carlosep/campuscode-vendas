@@ -1,0 +1,8 @@
+en:
+  customers:
+    new:
+      create_customer: Create Customer
+    edit:
+      edit_customer: Edit Customer
+    form:
+      create_customer_button: Create
