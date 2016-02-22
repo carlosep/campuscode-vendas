@@ -7,16 +7,14 @@ describe 'Salesman registers a new customer' do
 
     visit new_customer_path
 
-    fill_in Customer.human_attribute_name(:name),         with: customer.name
-    fill_in Customer.human_attribute_name(:email),        with: customer.email
-    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
-    fill_in Customer.human_attribute_name(:address),      with: customer.address
-    fill_in Customer.human_attribute_name(:cpf_cnpj),
-    with: customer.cpf_cnpj
-    fill_in Customer.human_attribute_name(:contact_name),
-    with: customer.contact_name
+    fill_in 'customer[name]',          with: customer.name
+    fill_in 'customer[email]',         with: customer.email
+    fill_in 'customer[phone]',         with: customer.phone
+    fill_in 'customer[address]',       with: customer.address
+    fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
+    fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to have_content customer.name
     expect(page).to have_content customer.email
@@ -31,7 +29,7 @@ describe 'Salesman registers a new customer' do
     visit new_customer_path
 
 
-    click_on 'Save'
+    click_on 'Create'
 
     %w(Name Email Phone Address cpf_cnpj contact_name).each do |attr_name|
       expect(page).to have_css :span, "#{attr_name} can't be blank"
@@ -43,7 +41,7 @@ describe 'Salesman registers a new customer' do
     visit new_customer_path
 
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to have_css :span, 'Name can\'t be blank'
   end
@@ -53,7 +51,7 @@ describe 'Salesman registers a new customer' do
     visit new_customer_path
 
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to have_css :span, 'Phone can\'t be blank'
   end
@@ -63,7 +61,7 @@ describe 'Salesman registers a new customer' do
     visit new_customer_path
 
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to have_css :span, 'Email can\'t be blank'
   end
@@ -73,7 +71,7 @@ describe 'Salesman registers a new customer' do
     visit new_customer_path
 
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to have_css :span, 'Address can\'t be blank'
   end
@@ -83,7 +81,7 @@ describe 'Salesman registers a new customer' do
     visit new_customer_path
 
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to have_css :span, 'Cpf cnpj can\'t be blank'
   end
@@ -93,7 +91,7 @@ describe 'Salesman registers a new customer' do
     visit new_customer_path
 
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to have_css :span, 'Contact name can\'t be blank'
   end
@@ -105,16 +103,14 @@ describe 'Salesman registers a new customer' do
 
     visit new_customer_path
 
-    fill_in Customer.human_attribute_name(:name),         with: customer.name
-    fill_in Customer.human_attribute_name(:email),        with: 'a%2@'
-    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
-    fill_in Customer.human_attribute_name(:address),      with: customer.address
-    fill_in Customer.human_attribute_name(:cpf_cnpj),
-    with: customer.cpf_cnpj
-    fill_in Customer.human_attribute_name(:contact_name),
-    with: customer.contact_name
+    fill_in 'customer[name]',          with: customer.name
+    fill_in 'customer[email]',         with: 'a%2@'
+    fill_in 'customer[phone]',         with: customer.phone
+    fill_in 'customer[address]',       with: customer.address
+    fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
+    fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to_not have_content 'a%2@'
     expect(page).to have_css :span, 'Email is invalid'
@@ -126,16 +122,14 @@ describe 'Salesman registers a new customer' do
 
     visit new_customer_path
 
-    fill_in Customer.human_attribute_name(:name),         with: customer.name
-    fill_in Customer.human_attribute_name(:email),        with: customer.email
-    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
-    fill_in Customer.human_attribute_name(:address),      with: customer.address
-    fill_in Customer.human_attribute_name(:cpf_cnpj),
-    with: '11111111111'
-    fill_in Customer.human_attribute_name(:contact_name),
-    with: customer.contact_name
+    fill_in 'customer[name]',          with: customer.name
+    fill_in 'customer[email]',         with: customer.email
+    fill_in 'customer[phone]',         with: customer.phone
+    fill_in 'customer[address]',       with: customer.address
+    fill_in 'customer[cpf_cnpj]',      with: '11111111111'
+    fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to_not have_content '11111111111'
     expect(page).to have_css :span, 'Cpf cnpj is invalid'
@@ -148,16 +142,14 @@ describe 'Salesman registers a new customer' do
 
     visit new_customer_path
 
-    fill_in Customer.human_attribute_name(:name),         with: customer.name
-    fill_in Customer.human_attribute_name(:email),        with: customer.email
-    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
-    fill_in Customer.human_attribute_name(:address),      with: customer.address
-    fill_in Customer.human_attribute_name(:cpf_cnpj),
-    with: '12345678901234'
-    fill_in Customer.human_attribute_name(:contact_name),
-    with: customer.contact_name
+    fill_in 'customer[name]',          with: customer.name
+    fill_in 'customer[email]',         with: customer.email
+    fill_in 'customer[phone]',         with: customer.phone
+    fill_in 'customer[address]',       with: customer.address
+    fill_in 'customer[cpf_cnpj]',      with: '12345678901234'
+    fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Save'
+    click_on 'Create'
 
     expect(page).to_not have_content '12345678901234'
     expect(page).to have_css :span, 'Cpf cnpj is invalid'
@@ -171,16 +163,14 @@ describe 'Salesman registers a new customer' do
 
     visit new_customer_path
 
-    fill_in Customer.human_attribute_name(:name),         with: customer.name
-    fill_in Customer.human_attribute_name(:email),        with: customer.email
-    fill_in Customer.human_attribute_name(:phone),        with: customer.phone
-    fill_in Customer.human_attribute_name(:address),      with: customer.address
-    fill_in Customer.human_attribute_name(:cpf_cnpj),
-    with: customer.cpf_cnpj
-    fill_in Customer.human_attribute_name(:contact_name),
-    with: customer.contact_name
-
-    click_on 'Save'
+    fill_in 'customer[name]',          with: customer.name
+    fill_in 'customer[email]',         with: customer.email
+    fill_in 'customer[phone]',         with: customer.phone
+    fill_in 'customer[address]',       with: customer.address
+    fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
+    fill_in 'customer[contact_name]',  with: customer.contact_name
+    
+    click_on 'Create'
 
     expect(ActionMailer::Base.deliveries.count).to eq sent_count + 1
   end

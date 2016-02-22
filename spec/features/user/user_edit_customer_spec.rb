@@ -10,14 +10,14 @@ feature 'Salesman edits customer' do
 
     visit edit_customer_path(customer)
 
-    fill_in 'Name',         with: new_customer.name
-    fill_in 'Phone',        with: new_customer.phone
-    fill_in 'Address',      with: new_customer.address
-    fill_in 'Email',        with: new_customer.email
-    fill_in 'Contact name', with: new_customer.contact_name
-    fill_in 'Cpf cnpj',     with: new_customer.cpf_cnpj
+    fill_in 'customer[name]',         with: new_customer.name
+    fill_in 'customer[phone]',        with: new_customer.phone
+    fill_in 'customer[address]',      with: new_customer.address
+    fill_in 'customer[email]',        with: new_customer.email
+    fill_in 'customer[contact_name]', with: new_customer.contact_name
+    fill_in 'customer[cpf_cnpj]',     with: new_customer.cpf_cnpj
 
-    click_on 'Update'
+    click_on 'Create'
 
     expect(page).to have_content new_customer.name
     expect(page).to have_content new_customer.phone
