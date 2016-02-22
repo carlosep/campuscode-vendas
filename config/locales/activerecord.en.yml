@@ -6,6 +6,13 @@ en:
       user:
         name: Name
         email: Email
+      customer:
+        name: Name
+        email: Email
+        phone: Telefone
+        cpf_cnpj: CPF/CNPJ
+        address: Address
+        contact_name: Contact Name
     errors:
       messages:
         blank: "%{attribute} can't be blank"

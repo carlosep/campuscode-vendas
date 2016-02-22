@@ -1,25 +1,34 @@
 <div class='form'>
   <%= simple_form_for @customer do |f| %>
-    <div class='field'>
-      <%= f.input :name %>
-    </div>
-    <div class='field'>
-      <%= f.input :email %>
-    </div>
-    <div class='field'>
-      <%= f.input :phone %>
-    </div>
-    <div class='field'>
-      <%= f.input :cpf_cnpj %>
-    </div>
-    <div class='field'>
-      <%= f.input :address %>
-    </div>
-    <div class='field'>
-      <%= f.input :contact_name %>
+    <div class="form-inputs">
+      <label class="ls-label">
+        <%= f.input :name, autofocus: true,
+                          class: 'ls-login-bg-user ls-field-lg',
+                          error_html: { class: 'ls-help-message'} %>
+      </label>
+      <label class="ls-label">
+        <%= f.input :email, class: 'ls-login-bg-user ls-field-lg',
+                            error_html: { class: 'ls-help-message'} %>
+      </label>
+      <label class="ls-label">
+        <%= f.input :phone, class: 'ls-login-bg-user ls-field-lg',
+                            error_html: { class: 'ls-help-message'} %>
+      </label>
+      <label class="ls-label">
+        <%= f.input :cpf_cnpj, class: 'ls-login-bg-user ls-field-lg',
+                               error_html: { class: 'ls-help-message'} %>
+      </label>
+      <label class="ls-label">
+        <%= f.input :address, class: 'ls-login-bg-user ls-field-lg',
+                              error_html: { class: 'ls-help-message'} %>
+      </label>
+      <label class="ls-label">
+        <%= f.input :contact_name, class: 'ls-login-bg-user ls-field-lg',
+                                   error_html: { class: 'ls-help-message'} %>
+      </label>
     </div>
     <div class='submit-form'>
-      <%= f.button :submit %>
+      <%= f.button :submit, t('.create_customer_button') %>
     </div>
   <% end %>
 </div>
