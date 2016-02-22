@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        name: Name
+        email: Email
+    errors:
+      messages:
+        blank: "%{attribute} can't be blank"
