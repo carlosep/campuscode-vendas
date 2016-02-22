@@ -10,6 +10,11 @@
 <section id="order_form">
 <%= simple_form_for @order do |f| %>
   <div class="form-inputs">
+    <% if current_user.is_admin? %>
+    <label class="ls-label">
+      <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
+    </label>
+    <% end %>
     <label class="ls-label">
       <%= f.association :customer, selected: 1 %>
     </label>

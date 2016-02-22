@@ -1,9 +1,3 @@
 <h1>Editar Pedido</h1>
-<section id="order_form">
-<%= simple_form_for @order do |f| %>
-  <label class="ls-label">
-    <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
-  </label>
-<% end %>
-</section>
+
 <%= render 'form'%>

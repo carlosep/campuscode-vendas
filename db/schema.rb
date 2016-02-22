@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20160218151753) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "status"
+    t.string   "status",      default: "Aberto"
     t.string   "product"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "user_id"
     t.integer  "customer_id"
   end

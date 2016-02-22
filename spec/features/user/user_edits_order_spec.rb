@@ -11,8 +11,8 @@ describe 'User edits order' do
     visit edit_order_path(order)
 
     fill_in "Product", with: 'Other product'
-    select order.customer.name, from: "Customer"
-    select order.status, from: "Status"
+    select other_order.customer.name, from: "Customer"
+    select other_order.status, from: "Status"
 
     click_on "Update Order"
 
