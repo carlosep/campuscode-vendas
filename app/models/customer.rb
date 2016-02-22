@@ -8,7 +8,6 @@ class Customer < ActiveRecord::Base
   has_many :orders
 
   def check_for_cnpj
-    return true if cpf_cnpj.size == 14
-    false
+    cpf_cnpj.size == 14      
   end
 end
