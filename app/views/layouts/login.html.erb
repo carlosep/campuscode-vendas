@@ -20,6 +20,8 @@
       <div class="ls-login-box">
   <h1 class="ls-login-logo">CampusCode</h1>
   <h2 class="ls-login-logo">Sistema de Vendas</h2>
+  <span class="ls-alert-warning col-xs-12"><%= flash[:alert] %></span>
+  <span class="ls-alert-success col-xs-12"><%= flash[:notice] %></span>
   <%= yield %>
 </div>
 
