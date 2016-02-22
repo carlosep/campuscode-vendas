@@ -17,7 +17,7 @@ describe 'User edits order' do
     click_on "Update Order"
 
     expect(page).to have_content 'Other product'
-    expect(page).to have_content "Pedido #{order.id}"
+    expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.created_at
     expect(page).to have_content other_order.status
     expect(page).to have_content other_order.customer.name
