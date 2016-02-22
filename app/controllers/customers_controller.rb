@@ -24,11 +24,25 @@ class CustomersController < ApplicationController
     respond_with @customer
   end
 
+  def search
+    @customer = Customer.find_by(cpf_cnpj: search_params)
+    if @customer.nil?
+      redirect_to root_path
+    else
+      redirect_to @customer
+    end
+  end
+
   private
 
   def customer_params
     params.require(:customer)
           .permit(:name, :email, :phone, :address, :cpf_cnpj, :contact_name)
+  end
+
+  def search_params
+    search = params.require(:search).permit(:query)
+    search[:query]
   end
 
   def set_customer
