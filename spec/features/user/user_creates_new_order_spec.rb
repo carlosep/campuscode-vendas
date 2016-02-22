@@ -34,7 +34,7 @@ describe 'User creates new order' do
 
     expect(page).to have_content "Pedido #{order.id}"
     expect(page).to have_content order.created_at
-    expect(page).to have_content order.status #ERROR
+    expect(page).to have_content order.status
     expect(page).to have_content order.product
     expect(page).to have_content order.customer.name
     expect(page).to have_content order.user.name
