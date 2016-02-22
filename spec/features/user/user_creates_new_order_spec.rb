@@ -8,7 +8,6 @@ describe 'User creates new order' do
 
     fill_in "Product", with: order.product
     select order.customer.name, from: "Customer"
-    select order.status, from: "Status"
 
     within ('section#order_form') do
       click_on "Create Order"
