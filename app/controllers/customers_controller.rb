@@ -27,6 +27,7 @@ class CustomersController < ApplicationController
   def search
     @customer = Customer.find_by(cpf_cnpj: search_params)
     if @customer.nil?
+      flash[:alert] = 'Customer not found'
       redirect_to root_path
     else
       redirect_to @customer

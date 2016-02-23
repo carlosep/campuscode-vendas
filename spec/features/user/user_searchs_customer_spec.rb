@@ -34,4 +34,17 @@ feature 'User searchs customer' do
     expect(page).to have_content customer.phone
     expect(page).to have_content customer.email
   end
+
+  scenario 'failure' do
+    login
+
+    customer = create(:customer)
+
+    visit root_path
+
+    fill_in 'Search customer', with: 'aaaaaa'
+    click_on  'Search'
+
+    expect(page).to have_content 'Customer not found'
+  end
 end
