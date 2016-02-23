@@ -18,5 +18,5 @@
     <br>
   <% end %>
   <%= button_to 'Editar Pedido', edit_order_path(@order),
-      class: 'ls-btn-primary ls-btn-block ls-btn-lg' if current_user.is_admin?%>
+      method: :get, class: 'ls-btn-primary ls-btn-block ls-btn-lg' if current_user.is_admin?%>
 <% end %>
