@@ -1,4 +1,4 @@
 require 'active_resource'
-class Peridiocity < ActiveResource::Base
+class Periodicity < ActiveResource::Base
   self.site = "http://localhost:3001"
 end
