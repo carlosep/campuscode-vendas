@@ -40,6 +40,7 @@ class OrdersController < ApplicationController
 
   def set_collections
     @customer = Customer.all
+    @products = Product.all
   end
 
   def set_order
