@@ -3,7 +3,11 @@ require 'rails_helper'
 describe 'User edits order' do
   scenario 'successfully' do
     user = create(:user, is_admin: true)
-    customer = create(:customer, name: 'Carlos')
+    customer = create(:customer, name: 'Carlos',
+                                 cpf_cnpj: '86584402000104',
+                                 email: 'nagaroni@hotmail.com',
+                                 razao_social: 'Campus code',
+                                 contact_name: 'Alan Djah')
     order = create(:order)
     other_order = build(:order, status: 'Concluído', customer: customer)
 
