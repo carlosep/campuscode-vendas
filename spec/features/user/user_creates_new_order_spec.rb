@@ -6,7 +6,7 @@ describe 'User creates new order' do
     login
     visit new_order_path
 
-    fill_in "Product", with: order.product
+    select 'Hospedagem', from: 'Product'
     select order.customer.name, from: "Customer"
 
     within ('section#order_form') do
@@ -26,7 +26,7 @@ describe 'User creates new order' do
     login
     visit new_order_path
 
-    fill_in "Product", with: order.product
+    select order.product, from: 'Product'
 
     within ('section#order_form') do
       click_on "Create Order"

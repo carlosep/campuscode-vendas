@@ -10,13 +10,13 @@ describe 'User edits order' do
     login(user)
     visit edit_order_path(order)
 
-    fill_in "Product", with: 'Other product'
+    select 'Hospedagem', from: 'Product'
     select other_order.customer.name, from: "Customer"
     select other_order.status, from: "Status"
 
     click_on "Update Order"
 
-    expect(page).to have_content 'Other product'
+    expect(page).to have_content 'Hospedagem'
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.created_at
     expect(page).to have_content other_order.status
