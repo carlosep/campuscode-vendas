@@ -7,6 +7,7 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
+
     if @customer.save
       CustomerMailer.welcome_email(@customer).deliver_now
     end
@@ -27,6 +28,7 @@ class CustomersController < ApplicationController
   def search
     @customer = Customer.find_by(cpf_cnpj: search_params)
     if @customer.nil?
+      flash[:alert] = 'Customer not found'
       redirect_to root_path
     else
       redirect_to @customer
@@ -37,7 +39,8 @@ class CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer)
-          .permit(:name, :email, :phone, :address, :cpf_cnpj, :contact_name)
+          .permit(:name, :email, :phone, :address, :cpf_cnpj,
+                  :contact_name, :company_name, :birth_date)
   end
 
   def search_params

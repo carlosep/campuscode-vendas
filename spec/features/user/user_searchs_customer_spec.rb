@@ -20,7 +20,9 @@ feature 'User searchs customer' do
 
   scenario 'By CNPJ and Succefully' do
     login
-    customer = create(:customer, cpf_cnpj: '86584402000104')
+    customer = create(:customer, cpf_cnpj: '86584402000104',
+                                 company_name: 'Campus code',
+                                 contact_name: 'Alan Djah')
 
     visit root_path
 
@@ -33,5 +35,18 @@ feature 'User searchs customer' do
     expect(page).to have_content customer.address
     expect(page).to have_content customer.phone
     expect(page).to have_content customer.email
+  end
+
+  scenario 'failure' do
+    login
+
+    customer = create(:customer)
+
+    visit root_path
+
+    fill_in 'Search customer', with: 'aaaaaa'
+    click_on  'Search'
+
+    expect(page).to have_content 'Customer not found'
   end
 end
