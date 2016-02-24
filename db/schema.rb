@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20160223205325) do
     t.string   "contact_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.date     "birthdate"
+    t.string   "company_name"
+    t.date     "birth_date"
   end
 
   create_table "orders", force: :cascade do |t|

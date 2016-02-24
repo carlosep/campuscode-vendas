@@ -26,6 +26,15 @@
         <%= f.input :contact_name, class: 'ls-login-bg-user ls-field-lg',
                                    error_html: { class: 'ls-help-message'} %>
       </label>
+      <label class="ls-label">
+        <%= f.input :company_name, class: 'ls-login-bg-user ls-field-lg',
+                                   error_html: { class: 'ls-help-message'} %>
+      </label>
+      <label class="ls-label">
+        <%= f.input :birth_date, class: 'ls-login-bg-user ls-field-lg',
+                                 start_year: Time.now.year - 100,
+                                 error_html: { class: 'ls-help-message'} %>
+      </label>
     </div>
     <div class='submit-form'>
       <%= f.button :submit, t('.create_customer_button') %>

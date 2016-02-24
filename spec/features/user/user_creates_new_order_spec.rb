@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe 'User creates new order' do
   scenario 'successfully' do
     order = build(:order)
@@ -20,6 +21,7 @@ describe 'User creates new order' do
     expect(page).to have_content order.customer.name
     expect(page).to have_content order.user.name
   end
+
   scenario 'with default status and customer' do
     order = build(:order)
 

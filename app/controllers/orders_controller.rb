@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_order, only: [:show, :edit, :update, :order_status]
   before_action :user_admin, only: [:edit, :update]
+
   def show
   end
 
