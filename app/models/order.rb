@@ -19,10 +19,6 @@ class Order < ActiveRecord::Base
     Periodicity.find(periodicity_id)
   end
 
-  def periodicity=(periodicity)
-    periodicity_id = periodicity.id
-  end
-
   def price
     Price.find(price_id)
   end
