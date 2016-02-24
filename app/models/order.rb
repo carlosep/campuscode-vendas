@@ -9,4 +9,12 @@ class Order < ActiveRecord::Base
   def product=(product)
     product_id = product.id
   end
+  
+  def periodicity
+    Periodicity.find(periodicity_id)
+  end
+
+  def periodicity=(periodicity)
+    periodicity_id = periodicity.id
+  end
 end

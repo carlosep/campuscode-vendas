@@ -3,19 +3,18 @@
   <strong><%= t '.status'%>:</strong> <%= @order.status %><br><br>
   <strong><%= t '.user_name'%>:</strong> <%= @order.user.name %><br><br>
   <strong><%= t '.product'%>:</strong> <%= @order.product.name %><br><br>
+  <strong><%= t '.periodicity'%>:</strong> <%= @order.periodicity.name %><br><br>
   <strong><%= t '.customer'%>:</strong> <%= @order.customer.name%><br><br>
-  <strong><%= t '.created_at'%>:</strong> <%= @order.created_at %><br><br>
+  <strong><%= t '.created_at'%>:</strong> <%= @order.created_at.to_date %><br><br>
 </span>
 
 <% if current_user.is_admin? || @order.status == 'Aberto'%>
   <%= button_to 'Editar Pedido', edit_order_path(@order),
     method: :get, class: 'ls-btn-primary ls-btn-block ls-btn-lg' %>
-  <br>
   <%= button_to 'Cancelar Pedido',
       order_status_order_path(@order, type: 'cancel'),
-      method: :put, class: 'ls-btn-primary ls-btn-block ls-btn-lg'%>
-  <br>
+      method: :put, class: 'ls-btn-primary ls-btn-block ls-btn-lg' unless @order.status == 'Cancelado' %>
 <% end %>
 <%= button_to 'Concluir Pedido',
     order_status_order_path(@order, type: 'finish'),
-    method: :put, class: 'ls-btn-primary ls-btn-block ls-btn-lg'%>
+    method: :put, class: 'ls-btn-primary ls-btn-block ls-btn-lg' unless @order.status == 'Concluído' %>

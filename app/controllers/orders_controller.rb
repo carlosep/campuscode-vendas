@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
 
   def set_collections
     @products = Product.all
+    @periodicities = Periodicity.all
   end
 
   def set_order
@@ -49,6 +50,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order)
-          .permit(:status, :product_id, :customer_id, :user_id)
+          .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id)
   end
 end
