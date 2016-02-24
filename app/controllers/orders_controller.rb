@@ -2,11 +2,16 @@ class OrdersController < ApplicationController
   before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_order, only: [:show, :edit, :update, :order_status]
   before_action :user_admin, only: [:edit, :update]
+
   def show
   end
 
   def new
-    @order = Order.new
+    @order = params[:order] ? Order.new(order_params) : Order.new
+
+    if params[:order].try(:[], :product_id).try(:present?)
+      @plans = Product.find(params[:order][:product_id]).plans
+    end
   end
 
   def create
@@ -40,7 +45,7 @@ class OrdersController < ApplicationController
   private
 
   def set_collections
-    @customer = Customer.all
+    @products = Product.all
   end
 
   def set_order
@@ -49,6 +54,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order)
-          .permit(:status, :product, :customer_id, :user_id)
+          .permit(:status, :product_id, :plan_id, :customer_id, :user_id, :coupon)
   end
 end

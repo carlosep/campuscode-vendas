@@ -6,5 +6,6 @@ FactoryGirl.define do
     address 'Av alameda'
     cpf_cnpj '81239932006'
     contact_name 'Bruno'
+    birth_date '1995/3/16'
   end
 end
