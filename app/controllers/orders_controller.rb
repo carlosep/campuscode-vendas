@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
+    @order = params[:order] ? Order.new(order_params) : Order.new
   end
 
   def create
@@ -42,6 +42,9 @@ class OrdersController < ApplicationController
   def set_collections
     @products = Product.all
     @periodicities = Periodicity.all
+    if params[:order].try(:[], :product_id).try(:present?)
+      @plans = Product.find(params[:order][:product_id]).plans
+    end
   end
 
   def set_order
@@ -51,6 +54,6 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
           .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id,
-                  :price_id, :coupon)
+                  :price_id, :coupon, :plan_id)
   end
 end
