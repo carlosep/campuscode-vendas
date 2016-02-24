@@ -27,18 +27,22 @@ ActiveRecord::Schema.define(version: 20160224185253) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string   "status",      default: "Aberto"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.string   "status",         default: "Aberto"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "user_id"
     t.integer  "customer_id"
     t.integer  "product_id"
-    t.integer  "plan_id"
+    t.integer  "periodicity_id"
+    t.integer  "price_id"
     t.string   "coupon"
+    t.integer  "plan_id"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
+  add_index "orders", ["periodicity_id"], name: "index_orders_on_periodicity_id"
   add_index "orders", ["plan_id"], name: "index_orders_on_plan_id"
+  add_index "orders", ["price_id"], name: "index_orders_on_price_id"
   add_index "orders", ["product_id"], name: "index_orders_on_product_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
