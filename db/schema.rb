@@ -22,21 +22,21 @@ ActiveRecord::Schema.define(version: 20160224154257) do
     t.string   "contact_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.date     "birthdate"
     t.string   "company_name"
     t.date     "birth_date"
   end
 
   create_table "orders", force: :cascade do |t|
     t.string   "status",      default: "Aberto"
-    t.string   "product"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "user_id"
     t.integer  "customer_id"
+    t.integer  "product_id"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
+  add_index "orders", ["product_id"], name: "index_orders_on_product_id"
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "users", force: :cascade do |t|
