@@ -16,10 +16,10 @@
     </label>
     <% end %>
     <label class="ls-label">
-      <%= f.association :customer, selected: 1 %>
+      <%= f.association :customer %>
     </label>
     <label class="ls-label">
-      <%= f.input :product_id, collection: @products, selected: 1 %>
+      <%= f.input :product_id, collection: @products %>
     </label>
   </div>
   <div class="form-actions">
