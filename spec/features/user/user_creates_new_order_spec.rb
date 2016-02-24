@@ -30,8 +30,9 @@ describe 'User creates new order' do
     visit new_order_path
 
     select 'Hospedagem', from: 'Product'
-    select order.customer.name, from: "Customer"
+    select order.customer.name, from: 'Customer'
     fill_in 'order[coupon]', with: 'MAQ7556'
+
     within ('section#order_form') do
       click_on 'Create Order'
     end
@@ -43,5 +44,23 @@ describe 'User creates new order' do
     expect(page).to have_content 'Hospedagem'
     expect(page).to have_content order.customer.name
     expect(page).to have_content order.user.name
+  end
+
+  scenario 'Failure with invalid coupon' do
+    order = build(:order)
+
+    login
+
+    visit new_order_path
+
+    select 'Hospedagem', from: 'Product'
+    select order.customer.name, from: 'Customer'
+    fill_in 'order[coupon]', with: 'AAABBB'
+
+    within('section#order_form') do
+      click_on 'Create Order'
+    end
+
+    expect(page).to have_css :span, text: 'Invalid coupon!', visible: true
   end
 end
