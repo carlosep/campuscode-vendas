@@ -22,7 +22,7 @@ describe 'User edits order' do
 
     expect(page).to have_content 'Hospedagem'
     expect(page).to have_content "Order #{order.id}"
-    expect(page).to have_content order.created_at
+    expect(page).to have_content order.created_at.to_date
     expect(page).to have_content other_order.status
     expect(page).to have_content other_order.customer.name
     expect(page).to have_content order.user.name

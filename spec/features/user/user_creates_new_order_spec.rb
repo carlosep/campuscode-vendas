@@ -29,9 +29,10 @@ describe 'User creates new order', :js => true do
 
     visit new_order_path
 
-    select 'Hospedagem', from: 'order[product_id]'
-    select 'Profissional', from: 'Plan'
+    select order.product.name, from: 'order[product_id]'
+    select order.plan.name, from: 'Plan'
     select order.customer.name, from: "Customer"
+    select order.periodicity.name, from: "Periodicity"
 
     within ('section#order_form') do
       click_on 'Create Order'
@@ -56,12 +57,13 @@ describe 'User creates new order', :js => true do
     fill_in 'user[password]', with: '12345678'
 
     click_on 'Log in'
-    
+
     visit new_order_path
 
-    select 'Hospedagem', from: 'Product'
+    select order.product.name, from: 'Product'
     select 'Profissional', from: 'Plan'
     select order.customer.name, from: "Customer"
+    select order.periodicity.name, from: "Periodicity"
     fill_in 'order[coupon]', with: 'MAQ7556'
     within ('section#order_form') do
       click_on 'Create Order'
@@ -71,7 +73,7 @@ describe 'User creates new order', :js => true do
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.created_at
     expect(page).to have_content order.status
-    expect(page).to have_content 'Hospedagem'
+    expect(page).to have_content order.product.name
     expect(page).to have_content order.customer.name
     expect(page).to have_content order.user.name
   end
