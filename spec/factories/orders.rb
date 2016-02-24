@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :order do
     status "Aberto"
+    product_id 1
     customer
     user
   end
