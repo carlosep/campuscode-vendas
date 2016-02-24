@@ -9,6 +9,7 @@ describe 'User creates new order' do
 
     select 'Hospedagem', from: 'Product'
     select order.customer.name, from: "Customer"
+    select order.periodicity.name, from: "Periodicity"
 
     within ('section#order_form') do
       click_on "Create Order"

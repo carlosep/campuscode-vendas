@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   def set_collections
     @products = Product.all
     @periodicities = Periodicity.all
-    @prices = Price.all
+    # @prices = Plan.prices
   end
 
   def set_order
