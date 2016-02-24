@@ -6,6 +6,7 @@
   <strong><%= t '.plan'%>:</strong> <%= @order.plan.name %><br><br>
   <strong><%= t '.customer'%>:</strong> <%= @order.customer.name%><br><br>
   <strong><%= t '.created_at'%>:</strong> <%= @order.created_at %><br><br>
+  <strong><%= t '.coupon'%>:</strong> <%= @order.coupon %><br><br>
 </span>
 
 <% if current_user.is_admin? || @order.status == 'Aberto'%>

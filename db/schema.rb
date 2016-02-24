@@ -33,7 +33,11 @@ ActiveRecord::Schema.define(version: 20160224165813) do
     t.integer  "user_id"
     t.integer  "customer_id"
     t.integer  "product_id"
+<<<<<<< HEAD
     t.integer  "plan_id"
+=======
+    t.string   "coupon"
+>>>>>>> master
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
