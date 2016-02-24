@@ -2,10 +2,20 @@ require 'rails_helper'
 
 describe 'User creates new order', :js => true do
   self.use_transactional_fixtures = false
-  scenario 'successfully' do
+
+  before(:each) do
     User.last.delete if User.last
     Customer.last.delete if Customer.last
     Order.last.delete if Order.last
+  end
+
+  after(:all) do
+    User.last.delete
+    Customer.last.delete
+    Order.last.delete
+  end
+
+  scenario 'successfully' do
     user = create(:user, email: 'a@gmail.com', password: '12345678')
     customer = create(:customer, email: 'a@gmail.com')
     order = build(:order, user: user, customer: customer)
@@ -33,20 +43,24 @@ describe 'User creates new order', :js => true do
     expect(page).to have_content 'Hospedagem'
     expect(page).to have_content order.customer.name
     expect(page).to have_content order.user.name
-
-    User.last.delete
-    Customer.last.delete
-    Order.last.delete
   end
 
   scenario 'with coupon' do
-    order = build(:order)
+    user = create(:user, email: 'a@gmail.com', password: '12345678')
+    customer = create(:customer, email: 'a@gmail.com')
+    order = build(:order, user: user, customer: customer)
 
-    login
+    visit root_path
 
+    fill_in 'user[email]',    with: 'a@gmail.com'
+    fill_in 'user[password]', with: '12345678'
+
+    click_on 'Log in'
+    
     visit new_order_path
 
     select 'Hospedagem', from: 'Product'
+    select 'Profissional', from: 'Plan'
     select order.customer.name, from: "Customer"
     fill_in 'order[coupon]', with: 'MAQ7556'
     within ('section#order_form') do

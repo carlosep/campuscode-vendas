@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224165813) do
+ActiveRecord::Schema.define(version: 20160224185253) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name"
@@ -33,11 +33,8 @@ ActiveRecord::Schema.define(version: 20160224165813) do
     t.integer  "user_id"
     t.integer  "customer_id"
     t.integer  "product_id"
-<<<<<<< HEAD
     t.integer  "plan_id"
-=======
     t.string   "coupon"
->>>>>>> master
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
