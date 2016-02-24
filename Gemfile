@@ -24,6 +24,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rubocop', '~> 0.36.0', require: false
   gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
 end
 
 group :development do

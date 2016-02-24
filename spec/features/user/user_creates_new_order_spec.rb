@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe 'User creates new order' do
+describe 'User creates new order', :js => true do
   scenario 'successfully' do
     order = build(:order)
-
-    login
+    
     visit new_order_path
 
-    select 'Hospedagem', from: 'Product'
+    select 'Hospedagem', from: 'order[product_id]'
+    select 'Profissional', from: 'Plan'
     select order.customer.name, from: "Customer"
 
     within ('section#order_form') do
