@@ -194,7 +194,7 @@ describe 'Salesman registers a new customer' do
 
   scenario 'And failure when already has registered cnpj' do
     customer = create(:customer, cpf_cnpj: '86584402000104',
-                                 razao_social: 'Campus code',
+                                 company_name: 'Campus code',
                                  contact_name: 'Alan Djah')
 
     login

@@ -5,7 +5,7 @@ describe 'Salesman registers a new customer with cnpj' do
     login
 
     customer = build(:customer, cpf_cnpj: '86584402000104',
-                                razao_social: 'Campus code',
+                                company_name: 'Campus code',
                                 contact_name: 'Alan Djah' )
 
     visit new_customer_path
@@ -16,7 +16,7 @@ describe 'Salesman registers a new customer with cnpj' do
     fill_in 'customer[address]',          with: customer.address
     fill_in 'customer[cpf_cnpj]',         with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',     with: customer.contact_name
-    fill_in 'customer[razao_social]',     with: customer.razao_social
+    fill_in 'customer[company_name]',     with: customer.company_name
 
     select '1995',   from: 'customer[birth_date(1i)]'
     select 'March',  from: 'customer[birth_date(2i)]'
@@ -29,11 +29,11 @@ describe 'Salesman registers a new customer with cnpj' do
     expect(page).to have_content customer.phone
     expect(page).to have_content customer.address
     expect(page).to have_content customer.cpf_cnpj
-    expect(page).to have_content customer.razao_social
+    expect(page).to have_content customer.company_name
     expect(page).to have_content customer.contact_name
   end
 
-  scenario 'and is mandatory to fill razao social when registers a company' do
+  scenario 'and is mandatory to fill Company name when registers a company' do
     login
 
     customer = build(:customer, cpf_cnpj: '86584402000104',
@@ -49,7 +49,7 @@ describe 'Salesman registers a new customer with cnpj' do
     fill_in 'customer[contact_name]',     with: customer.contact_name
     click_on 'Create'
 
-    expect(page).to have_css :span, text: 'Razao social can\'t be blank',
+    expect(page).to have_css :span, text: 'Company name can\'t be blank',
                                     visible: true
   end
 end
