@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_order, only: [:show, :edit, :update, :order_status]
+  # before_action :set_collections, only: [:new, :create, :edit, :update]
   before_action :user_admin, only: [:edit, :update]
 
   def show
@@ -8,46 +8,51 @@ class OrdersController < ApplicationController
 
   def new
     @order = params[:order] ? Order.new(order_params) : Order.new
+    set_collections
   end
 
   def create
     @order = current_user.orders.create(order_params)
+    set_collections
     respond_with @order
   end
 
   def edit
+    update_not_saving(params[:order]) if params[:order]
+    set_collections
   end
 
   def update
     @order.update(order_params)
+    set_collections
     respond_with @order
   end
 
   def order_status
-   type = params[:type]
-   if type == 'finish'
-    @order.status = 'Concluído'
-     redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
-   elsif type == 'cancel'
-    @order.status = 'Cancelado'
-     redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
-   else
-     redirect_to :back, notice: 'Nothing happened.'
-   end
-   @order.save
+    type = params[:type]
+    if type == 'finish'
+      @order.status = 'Concluído'
+      CustomerMailer.conclusion_email(@order).deliver_now
+      redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
+    elsif type == 'cancel'
+      @order.status = 'Cancelado'
+      redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+    @order.save
  end
 
   private
 
   def set_collections
     @products = Product.all
-    @periodicities = Periodicity.all
-    if params[:order].try(:[], :product_id).try(:present?)
-      @plans = Product.find(params[:order][:product_id]).plans
-    end
-    if params[:order].try(:[], :plan_id).try(:present?)
-      @plan = Plan.find(params[:order][:plan_id])
+    if @order && @order.plan_id
+      @plan = Plan.find(@order.plan_id)
       @prices = Price.find(:all, from: @plan.prices_path)
+    end
+    if @order && @order.product_id
+      @plans = Product.find(@order.product_id).plans
     end
   end
 
@@ -59,5 +64,15 @@ class OrdersController < ApplicationController
     params.require(:order)
           .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id,
                   :price_id, :coupon, :plan_id)
+  end
+
+  def update_not_saving(params_order)
+    @order.product_id = params_order[:product_id]
+    @order.plan_id = params_order[:plan_id]
+    @order.customer_id = params_order[:customer_id]
+    @order.status = params_order[:status]
+    @order.price_id = params_order[:price_id]
+    @order.coupon = params_order[:coupon]
+    @order.periodicity_id = params_order[:periodicity_id]
   end
 end

@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   end
 
   def plan
-    Plan.find(plan_id).plan
+    Plan.find(plan_id)
   end
 
   def product=(product)
