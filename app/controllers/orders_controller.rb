@@ -51,12 +51,15 @@ class OrdersController < ApplicationController
 
   def set_collections
     @products = Product.all
-    if @order && @order.plan_id
-      @plan = Plan.find(@order.plan_id)
-      @prices = Price.find(:all, from: @plan.prices_path)
-    end
     if @order && @order.product_id
       @plans = Product.find(@order.product_id).plans
+        if @order && @order.plan_id
+          @plan = Plan.find(@order.plan_id)
+          @prices = Price.find(:all, from: @plan.prices_path)
+          if @order && @order.periodicity_id
+            @periodicity = @prices.select{ |price| price.id == @order.periodicity_id}.first
+          end
+        end
     end
   end
 

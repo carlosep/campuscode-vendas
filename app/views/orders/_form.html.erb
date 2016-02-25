@@ -27,9 +27,8 @@
     <label class="ls-label">
       <%= f.input :periodicity_id, collection: @prices if @prices %>
     </label>
-    <label class="ls-label">
-      <%= f.input :price_id, collection: @prices if @prices %>
-    </label>
+
+    <%= @periodicity.value if @periodicity %>
 
     <label class="ls-label">
       <%= f.input :coupon %>
@@ -56,6 +55,19 @@ $(function() {
     $('#new_order').attr("method", "get");
     $('#new_order').attr("action", "<%= new_order_path %>");
     $('#new_order').submit();
+
+    $('#edit_order_1').attr("method", "get");
+    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_1').submit();
+  });
+  $('#order_periodicity_id').change( function(e){
+    $('#new_order').attr("method", "get");
+    $('#new_order').attr("action", "<%= new_order_path %>");
+    $('#new_order').submit();
+    
+    $('#edit_order_1').attr("method", "get");
+    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_1').submit();
   });
 });
 
