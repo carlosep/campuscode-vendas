@@ -11,8 +11,22 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.create(order_params)
-    respond_with @order
+    @order = current_user.orders.build(order_params)
+
+    if params[:order][:coupon].empty?
+      @order.save
+      respond_with @order
+    else
+      coupon = check_coupon(params[:order][:coupon])
+      if coupon == false
+        flash[:alert] = 'Invalid coupon!'
+        render :new
+      else
+        @order.save
+        respond_with @order
+      end
+    end
+
   end
 
   def edit
@@ -46,6 +60,12 @@ class OrdersController < ApplicationController
     if params[:order].try(:[], :product_id).try(:present?)
       @plans = Product.find(params[:order][:product_id]).plans
     end
+  end
+
+  def check_coupon(coupon_code)
+    coupon = Coupon.find(coupon_code)
+  rescue
+    false
   end
 
   def set_order
