@@ -25,10 +25,7 @@
       <%= f.input :plan_id, collection: @plans if @plans %>
     </label>
     <label class="ls-label">
-      <%= f.input :periodicity_id, collection: @periodicities if @periodicities %>
-    </label>
-    <label class="ls-label">
-      <%= f.input :price_id, collection: @prices %>
+      <%= f.input :price_id, collection: @prices if @prices %>
     </label>
     <label class="ls-label">
       <%= f.input :coupon %>

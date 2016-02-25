@@ -8,11 +8,15 @@ class Order < ActiveRecord::Base
   end
 
   def plan
-    Plan.find(plan_id)
+    Plan.find(plan_id).plan
   end
 
   def product=(product)
     product_id = product.id
+  end
+
+  def plan=(plan)
+    plan_id = plan.id
   end
 
   def periodicity

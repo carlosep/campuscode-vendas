@@ -41,11 +41,13 @@ class OrdersController < ApplicationController
 
   def set_collections
     @products = Product.all
+    @periodicities = Periodicity.all
     if params[:order].try(:[], :product_id).try(:present?)
       @plans = Product.find(params[:order][:product_id]).plans
     end
     if params[:order].try(:[], :plan_id).try(:present?)
-      @periodicities = Plan.find(params[:order][:plan_id]).periodicities #waiting
+      @plan = Plan.find(params[:order][:plan_id])
+      @prices = Price.find(:all, from: @plan.prices_path)
     end
   end
 
