@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_order, only: [:show, :edit, :update, :order_status]
+  before_action :set_collections, only: [:new, :create, :edit, :update]
   before_action :user_admin, only: [:edit, :update]
 
   def show
@@ -8,18 +8,23 @@ class OrdersController < ApplicationController
 
   def new
     @order = params[:order] ? Order.new(order_params) : Order.new
+    set_plans
   end
 
   def create
     @order = current_user.orders.create(order_params)
+    set_plans
     respond_with @order
   end
 
   def edit
+    update_not_saving(params[:order]) if params[:order]
+    set_plans
   end
 
   def update
     @order.update(order_params)
+    set_plans
     respond_with @order
   end
 
@@ -43,18 +48,31 @@ class OrdersController < ApplicationController
   def set_collections
     @products = Product.all
     @periodicities = Periodicity.all
-    if params[:order].try(:[], :product_id).try(:present?)
-      @plans = Product.find(params[:order][:product_id]).plans
-    end
   end
 
   def set_order
     @order = Order.find(params[:id])
   end
 
+  def set_plans
+    if @order && @order.product_id
+      @plans = Product.find(@order.product_id).plans
+    end
+  end
+
   def order_params
     params.require(:order)
           .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id,
                   :price_id, :coupon, :plan_id)
+  end
+
+  def update_not_saving(params_order)
+    @order.product_id = params_order[:product_id]
+    @order.plan_id = params_order[:plan_id]
+    @order.customer_id = params_order[:customer_id]
+    @order.status = params_order[:status]
+    @order.price_id = params_order[:price_id]
+    @order.coupon = params_order[:coupon]
+    @order.periodicity_id = params_order[:periodicity_id]
   end
 end

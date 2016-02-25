@@ -46,6 +46,10 @@ $(function() {
     $('#new_order').attr("method", "get");
     $('#new_order').attr("action", "<%= new_order_path %>");
     $('#new_order').submit();
+
+    $('#edit_order_1').attr("method", "get");
+    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_1').submit();
   });
 });
 
