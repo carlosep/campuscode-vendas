@@ -48,4 +48,17 @@ describe 'User edits order status' do
     expect(page).not_to have_link 'Concluir Pedido'
     expect(page).not_to have_link 'Cancelar Pedido'
   end
+
+  scenario 'successfully receive confirmation email' do
+    sent_count = ActionMailer::Base.deliveries.count
+    user = create(:user)
+    order = create(:order)
+
+    login(user)
+    visit order_path(order)
+
+    click_on "Concluir Pedido"
+
+    expect(ActionMailer::Base.deliveries.count).to eq sent_count + 1
+  end
 end

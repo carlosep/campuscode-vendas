@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
+    @order = params[:order] ? Order.new(order_params) : Order.new
   end
 
   def create
@@ -24,23 +24,28 @@ class OrdersController < ApplicationController
   end
 
   def order_status
-   type = params[:type]
-   if type == 'finish'
-    @order.status = 'Concluído'
-     redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
-   elsif type == 'cancel'
-    @order.status = 'Cancelado'
-     redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
-   else
-     redirect_to :back, notice: 'Nothing happened.'
-   end
-   @order.save
+    type = params[:type]
+    if type == 'finish'
+      @order.status = 'Concluído'
+      CustomerMailer.conclusion_email(@order).deliver_now
+      redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
+    elsif type == 'cancel'
+      @order.status = 'Cancelado'
+      redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+    @order.save
  end
 
   private
 
   def set_collections
     @products = Product.all
+    @periodicities = Periodicity.all
+    if params[:order].try(:[], :product_id).try(:present?)
+      @plans = Product.find(params[:order][:product_id]).plans
+    end
   end
 
   def set_order
@@ -49,6 +54,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order)
-          .permit(:status, :product_id, :customer_id, :user_id, :coupon)
+          .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id,
+                  :price_id, :coupon, :plan_id)
   end
 end

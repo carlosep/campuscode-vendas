@@ -21,6 +21,15 @@
     <label class="ls-label">
       <%= f.input :product_id, collection: @products %>
     </label>
+    <label class="ls-label" >
+      <%= f.input :plan_id, collection: @plans if @plans %>
+    </label>
+    <label class="ls-label">
+      <%= f.input :periodicity_id, collection: @periodicities %>
+    </label>
+    <label class="ls-label">
+      <%= f.input :price_id, collection: @prices %>
+    </label>
     <label class="ls-label">
       <%= f.input :coupon %>
     </label>
@@ -30,3 +39,14 @@
   </div>
 <% end %>
 </section>
+
+<script type="text/javascript">
+$(function() {
+  $('#order_product_id').change( function(e){
+    $('#new_order').attr("method", "get");
+    $('#new_order').attr("action", "<%= new_order_path %>");
+    $('#new_order').submit();
+  });
+});
+
+</script>
