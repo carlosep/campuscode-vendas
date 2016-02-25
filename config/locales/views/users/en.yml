@@ -4,6 +4,8 @@ en:
       create_user_button: Create
       create_user: Create User
       create_seller: Create Seller
+      users_path: List Sellers
+      orders: Orders
       name: Name
       email: Email
     show:

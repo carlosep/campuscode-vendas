@@ -1,9 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: :show
-  before_action :user_admin, only: [:new, :create]
+  before_action :user_admin, only: [:new, :create, :index]
+
+  def index
+    @users = User.where('is_admin = ? OR is_admin IS ?', false, nil)
+  end
 
   def show
     @user = User.find(params[:id])
+    unless current_user.is_admin? || current_user.id == @user.id
+      redirect_to root_path, notice: 'Você não é o administrador'
+    end
   end
 
   def new
