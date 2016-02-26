@@ -15,19 +15,12 @@ class Order < ActiveRecord::Base
     product_id = product.id
   end
 
+  def plan=(plan)
+    plan_id = plan.id
+  end
+
   def periodicity
     Periodicity.find(periodicity_id)
   end
 
-  def periodicity=(periodicity)
-    periodicity_id = periodicity.id
-  end
-
-  def price
-    Price.find(price_id)
-  end
-
-  def price=(price)
-    price_id = price.id
-  end
 end

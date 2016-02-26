@@ -12,23 +12,23 @@ class OrdersController < ApplicationController
 
   def new
     @order = params[:order] ? Order.new(order_params) : Order.new
-    set_plans
+    set_collections
   end
 
   def create
     @order = current_user.orders.create(order_params)
-    set_plans
+    set_collections
     respond_with @order
   end
 
   def edit
     update_not_saving(params[:order]) if params[:order]
-    set_plans
+    set_collections
   end
 
   def update
     @order.update(order_params)
-    set_plans
+    set_collections
     respond_with @order
   end
 
@@ -51,23 +51,28 @@ class OrdersController < ApplicationController
 
   def set_collections
     @products = Product.all
-    @periodicities = Periodicity.all
+    @customers = Customer.all
+    if @order && @order.product_id
+      @plans = Product.find(@order.product_id).plans
+        if @order && @order.plan_id
+          @plan = Plan.find(@order.plan_id)
+          @periodicities = Price.find(:all, from: @plan.prices_path)
+          if @order && @order.periodicity_id
+            @periodicity = @periodicities.select{ |periodicity| periodicity.id == @order.periodicity_id}.first
+            @price = @periodicity.value
+          end
+        end
+    end
   end
 
   def set_order
     @order = Order.find(params[:id])
   end
 
-  def set_plans
-    if @order && @order.product_id
-      @plans = Product.find(@order.product_id).plans
-    end
-  end
-
   def order_params
     params.require(:order)
           .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id,
-                  :price_id, :coupon, :plan_id)
+                  :price, :coupon, :plan_id)
   end
 
   def update_not_saving(params_order)

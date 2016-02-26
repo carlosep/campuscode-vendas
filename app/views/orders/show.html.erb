@@ -1,15 +1,16 @@
 <h1 class="ls-title-intro ls-ico-cart"><%= t('.order') %> <%= @order.id %></h1>
 <span>
   <strong><%= t '.status'%>:</strong> <%= @order.status %><br><br>
-  <strong><%= t '.user_name'%>:</strong> <%= @order.user.name %><br><br>
-  <strong><%= t '.product'%>:</strong> <%= @order.product.name %><br><br>
-  <strong><%= t '.periodicity'%>:</strong> <%= @order.periodicity.name %><br><br>
-  <strong><%= t '.plan'%>:</strong> <%= @order.plan.name %><br><br>
+  <strong><%= t '.seller_name'%>:</strong> <%= @order.user.name %><br><br>
   <strong><%= t '.customer'%>:</strong> <%= @order.customer.name%><br><br>
-  <strong><%= t '.created_at'%>:</strong> <%= @order.created_at.to_date %><br><br>
+  <strong><%= t '.product'%>:</strong> <%= @order.product.name %><br><br>
+  <strong><%= t '.plan'%>:</strong> <%= @order.plan.name %><br><br>
+  <strong><%= t '.periodicity'%>:</strong> <%= @order.periodicity.name %><br><br>
+  <strong><%= t '.price'%>:</strong> <%= @order.price %><br><br>
   <strong><%= t '.coupon'%>:</strong> <%= @order.coupon %><br><br>
+  <strong><%= t '.created_at'%>:</strong> <%= @order.created_at.to_date %><br><br>
 </span>
-
+  
 <% if current_user.is_admin? || @order.status == 'Aberto'%>
   <%= button_to 'Editar Pedido', edit_order_path(@order),
     method: :get, class: 'ls-btn-primary ls-btn-block ls-btn-lg' %>

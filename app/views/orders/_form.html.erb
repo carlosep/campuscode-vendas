@@ -11,26 +11,59 @@
 <%= simple_form_for @order do |f| %>
   <div class="form-inputs">
     <% if current_user.is_admin? %>
-    <label class="ls-label">
-      <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
+    <label class="ls-label col-md-3">
+      <b class="ls-label-text"><%=f.label :status%></b>
+      <div class="ls-custom-select">
+      <%= f.input_field :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
+      </div>
     </label>
     <% end %>
-    <label class="ls-label">
-      <%= f.association :customer %>
+    <label class="ls-label col-md-3">
+      <b class="ls-label-text"><%=f.label :customer%></b>
+      <div class="ls-custom-select">
+      <%= f.input_field :customer_id, collection: @customers %>
+      </div>
     </label>
-    <label class="ls-label">
-      <%= f.input :product_id, collection: @products %>
+    <label class="ls-label col-md-3">
+      <b class="ls-label-text"><%=f.label :product_id%></b>
+      <div class="ls-custom-select">
+      <%= f.input_field :product_id, collection: @products %>
+      </div>
     </label>
-    <label class="ls-label" >
-      <%= f.input :plan_id, collection: @plans if @plans %>
+    <% if @plans %>
+    <label class="ls-label col-md-3">
+      <b class="ls-label-text"><%=f.label :plan_id%></b>
+      <div class="ls-custom-select">
+        <%=f.input_field :plan_id, collection: @plans %>
+      </div>
     </label>
-    <label class="ls-label">
-      <%= f.input :periodicity_id, collection: @periodicities %>
-    </label>
-    <label class="ls-label">
-      <%= f.input :price_id, collection: @prices %>
-    </label>
-    <label class="ls-label">
+    <% end %>
+    <%if @plan %>
+      <div class="ls-box ">
+        <header class="ls-info-header">
+          <h3 class="ls-title-4"><%= @plan.description%></h3>
+        </header>
+        <div class="ls-box-body">
+          <%@plan.details.each do |detail|%>
+          <p><%= detail %></p>
+          <%end%>
+        </div>
+        <%if @periodicities%>
+          <label class="ls-label col-md-3">
+            <b class="ls-label-text"><%=f.label :periodicity_id%></b>
+              <div class="ls-custom-select">
+                <%= f.input_field :periodicity_id, collection: @periodicities%>
+              </div>
+          </label>
+        <% end %>
+        <% if @periodicity %>
+          <label class="ls-label col-md-3">
+            <%= f.input :price, input_html: {value: @price}, readonly: true%>
+          </label>
+        <% end %>
+      </div>
+    <% end%>
+    <label class="ls-label col-md-3">
       <%= f.input :coupon %>
     </label>
   </div>
@@ -43,6 +76,24 @@
 <script type="text/javascript">
 $(function() {
   $('#order_product_id').change( function(e){
+    $('#new_order').attr("method", "get");
+    $('#new_order').attr("action", "<%= new_order_path %>");
+    $('#new_order').submit();
+
+    $('#edit_order_1').attr("method", "get");
+    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_1').submit();
+  });
+  $('#order_plan_id').change( function(e){
+    $('#new_order').attr("method", "get");
+    $('#new_order').attr("action", "<%= new_order_path %>");
+    $('#new_order').submit();
+
+    $('#edit_order_1').attr("method", "get");
+    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_1').submit();
+  });
+  $('#order_periodicity_id').change( function(e){
     $('#new_order').attr("method", "get");
     $('#new_order').attr("action", "<%= new_order_path %>");
     $('#new_order').submit();
