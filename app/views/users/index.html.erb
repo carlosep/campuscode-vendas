@@ -1,0 +1,9 @@
+<h1 class="ls-title-intro ls-ico-user">Vendedores</h1>
+<% @users.each do |user| %>
+  <span>
+    <%= link_to user_path(user) do %>
+      <b><%= user.name %></b>
+      (<%= user.email %>) <br>
+    <% end %>
+  </span>
+<% end %>

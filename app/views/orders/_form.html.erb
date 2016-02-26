@@ -10,11 +10,28 @@
 <section id="order_form">
 <%= simple_form_for @order do |f| %>
   <div class="form-inputs">
+    <% if current_user.is_admin? %>
     <label class="ls-label">
-      <%= f.association :customer, selected: 1 %>
+      <%= f.input :status, collection: ['Aberto', 'Concluído', 'Cancelado'], default: 'Aberto' %>
+    </label>
+    <% end %>
+    <label class="ls-label">
+      <%= f.association :customer %>
     </label>
     <label class="ls-label">
-      <%= f.input :product %>
+      <%= f.input :product_id, collection: @products %>
+    </label>
+    <label class="ls-label" >
+      <%= f.input :plan_id, collection: @plans if @plans %>
+    </label>
+    <label class="ls-label">
+      <%= f.input :periodicity_id, collection: @periodicities %>
+    </label>
+    <label class="ls-label">
+      <%= f.input :price_id, collection: @prices %>
+    </label>
+    <label class="ls-label">
+      <%= f.input :coupon %>
     </label>
   </div>
   <div class="form-actions">
@@ -22,3 +39,18 @@
   </div>
 <% end %>
 </section>
+
+<script type="text/javascript">
+$(function() {
+  $('#order_product_id').change( function(e){
+    $('#new_order').attr("method", "get");
+    $('#new_order').attr("action", "<%= new_order_path %>");
+    $('#new_order').submit();
+
+    $('#edit_order_1').attr("method", "get");
+    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_1').submit();
+  });
+});
+
+</script>

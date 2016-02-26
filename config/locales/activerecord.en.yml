@@ -1,0 +1,20 @@
+en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        name: Name
+        email: Email
+      customer:
+        name: Name
+        email: Email
+        phone: Phone
+        cpf_cnpj: CPF/CNPJ
+        address: Address
+        contact_name: Contact name
+    errors:
+      messages:
+        blank: "%{attribute} can't be blank"
+        invalid: "%{attribute} is invalid"
+        taken: "%{attribute} has already been taken"

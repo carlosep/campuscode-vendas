@@ -1,4 +1,13 @@
 <h1 class="ls-title-intro ls-ico-user"><%= @user.name %></h1>
 <span>
-  Email: <b><%= @user.email %></b>
+  <strong><%= t '.email'%></strong>: <%= @user.email %>
+  <hr>
+  <h3><%= t'.orders' %> </h3><br>
+    <% @user.orders.each do |order| %>
+      <%= link_to order_path(order) do %>
+        <strong><%= order.id %></strong> |
+        <%= order.product.name %>|
+        <%= order.status %></p><br>
+      <% end %>
+    <% end %>
 </span>

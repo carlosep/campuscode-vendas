@@ -20,14 +20,14 @@
       <div class="ls-login-box">
   <h1 class="ls-login-logo">CampusCode</h1>
   <h2 class="ls-login-logo">Sistema de Vendas</h2>
+  <span class="ls-alert-warning col-xs-12"><%= flash[:alert] %></span>
+  <span class="ls-alert-success col-xs-12"><%= flash[:notice] %></span>
   <%= yield %>
 </div>
 
     </div>
   </div>
 </div>
-
-<script src="../../../assets/javascripts/libs/jquery-2.1.0.min.js" type="text/javascript"></script><script src="../../../assets/javascripts/locastyle.js" type="text/javascript"></script>
 
 </body>
 </html>

@@ -10,8 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta name="description" content="Sistema de Vendas CampusCode.">
   <link href="http://assets.locaweb.com.br/locastyle/3.8.2/stylesheets/locastyle.css" rel="stylesheet" type="text/css">
-  <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
-  <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png">
 </head>
 <body>
   <div class="ls-topbar ">
@@ -21,7 +19,6 @@
 
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
       <a href="#" class="ls-ico-user">
-        <img src="/locawebstyle/assets/images/locastyle/avatar-example.jpg" alt="" />
         <span class="ls-name"> <%= current_user.name%></span>
         (<%= current_user.email%>)
       </a>
@@ -37,7 +34,9 @@
 
   <span class="ls-show-sidebar ls-ico-menu"></span>
 
-  <a href="/locawebstyle/documentacao/exemplos//pre-painel"  class="ls-go-next"><span class="ls-text">Voltar à lista de serviços</span></a>
+  <%= link_to :back, class: 'ls-go-next' do %>
+    <span class="ls-text">Voltar à lista de serviços</span>
+  <% end %>
 
   <!-- Nome do produto/marca com sidebar -->
   <h1 class="ls-brand-name">
@@ -59,8 +58,10 @@
     <nav class="ls-menu">
       <ul>
         <li> <%= link_to t(:create_user), new_user_path, class: 'ls-ico-users' if current_user.is_admin? %></li>
+        <li> <%= link_to t(:users_path), users_path, class: 'ls-ico-users' if current_user.is_admin? %></li>
         <li> <%= link_to t(:create_customer), new_customer_path, class: 'ls-ico-user' %></li>
         <li> <%= link_to t(:create_order), new_order_path, class: 'ls-ico-cart' %></li>
+        <li> <%= link_to t(:orders), orders_path, class: 'ls-ico-cart' if current_user.is_admin? %></li>
       </ul>
     </nav>
 
