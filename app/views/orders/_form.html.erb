@@ -25,10 +25,10 @@
       <%= f.input :plan_id, collection: @plans if @plans %>
     </label>
     <label class="ls-label">
-      <%= f.input :periodicity_id, collection: @prices if @prices %>
+      <%= f.input :periodicity_id, collection: @periodicities if @periodicities %>
     </label>
 
-    <%= @periodicity.value if @periodicity %>
+    <%= @price if @price %>
 
     <label class="ls-label">
       <%= f.input :coupon %>
@@ -64,7 +64,7 @@ $(function() {
     $('#new_order').attr("method", "get");
     $('#new_order').attr("action", "<%= new_order_path %>");
     $('#new_order').submit();
-    
+
     $('#edit_order_1').attr("method", "get");
     $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
     $('#edit_order_1').submit();

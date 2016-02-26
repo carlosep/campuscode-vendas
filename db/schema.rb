@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20160224185253) do
     t.integer  "user_id"
     t.integer  "customer_id"
     t.integer  "product_id"
+    t.integer  "plan_id"
     t.integer  "periodicity_id"
     t.integer  "price_id"
     t.string   "coupon"
-    t.integer  "plan_id"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id"
