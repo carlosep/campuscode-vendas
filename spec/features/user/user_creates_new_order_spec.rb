@@ -3,11 +3,6 @@ require 'rails_helper'
 describe 'User creates new order', :js => true do
   self.use_transactional_fixtures = false
 
-  # before(:each) do
-  #   User.last.delete if User.last
-  #   Customer.last.delete if Customer.last
-  # end
-
   after(:each) do
     User.last.delete if User.last
     Customer.last.delete if Customer.last
@@ -36,6 +31,7 @@ describe 'User creates new order', :js => true do
     expect(page).to have_content order.plan.name
     expect(page).to have_content order.user.name
     expect(page).to have_content order.periodicity.name
+    expect(page).to have_content '3.99'
 
   end
 
@@ -63,5 +59,6 @@ describe 'User creates new order', :js => true do
     expect(page).to have_content order.customer.name
     expect(page).to have_content order.user.name
     expect(page).to have_content order.periodicity.name
+    expect(page).to have_content '3.99'
   end
 end

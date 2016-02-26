@@ -51,6 +51,7 @@ class OrdersController < ApplicationController
 
   def set_collections
     @products = Product.all
+    @customers = Customer.all
     if @order && @order.product_id
       @plans = Product.find(@order.product_id).plans
         if @order && @order.plan_id
@@ -71,7 +72,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
           .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id,
-                  :price_id, :coupon, :plan_id)
+                  :price, :coupon, :plan_id)
   end
 
   def update_not_saving(params_order)
