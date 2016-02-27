@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User edits order', :js => true do
+describe 'Admin edits order', :js => true do
   self.use_transactional_fixtures = false
 
   after(:each) do
@@ -31,7 +31,7 @@ describe 'User edits order', :js => true do
     select other_order.plan.name, from: 'order[plan_id]'
     select other_order.periodicity.name, from: 'order[periodicity_id]'
 
-    click_on "Update Order"
+    click_on "Update"
 
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.user.name

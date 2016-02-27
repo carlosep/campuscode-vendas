@@ -22,7 +22,7 @@ describe 'User creates new order', :js => true do
     select order.periodicity.name, from: "order[periodicity_id]"
 
     within ('section#order_form') do
-      click_on 'Create Order'
+      click_on 'Create'
     end
 
     expect(page).to have_content "Order #{order.id}"
@@ -49,7 +49,7 @@ describe 'User creates new order', :js => true do
     select order.periodicity.name, from: "order[periodicity_id]"
     fill_in 'order[coupon]', with: 'MAQ7556'
     within ('section#order_form') do
-      click_on 'Create Order'
+      click_on 'Create'
     end
 
     expect(page).to have_content 'MAQ7556'
