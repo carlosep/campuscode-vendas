@@ -1,18 +1,23 @@
 class OrdersController < ApplicationController
-  before_action :set_collections, only: [:new, :create, :edit]
   before_action :set_order, only: [:show, :edit, :update, :order_status]
-  before_action :user_admin, only: [:edit, :update]
+  before_action :set_collections, only: [:new, :create, :edit, :update]
+  before_action :user_admin, only: [:edit, :update, :index]
+
+  def index
+    @orders = Order.all
+  end
 
   def show
   end
 
   def new
     @order = params[:order] ? Order.new(order_params) : Order.new
+    set_collections
   end
 
   def create
     @order = current_user.orders.build(order_params)
-
+    set_collections
     if params[:order][:coupon].empty?
       @order.save
       respond_with @order
@@ -26,14 +31,16 @@ class OrdersController < ApplicationController
         respond_with @order
       end
     end
-
   end
 
   def edit
+    update_not_saving(params[:order]) if params[:order]
+    set_collections
   end
 
   def update
     @order.update(order_params)
+    set_collections
     respond_with @order
   end
 
@@ -56,9 +63,17 @@ class OrdersController < ApplicationController
 
   def set_collections
     @products = Product.all
-    @periodicities = Periodicity.all
-    if params[:order].try(:[], :product_id).try(:present?)
-      @plans = Product.find(params[:order][:product_id]).plans
+    @customers = Customer.all
+    if @order && @order.product_id
+      @plans = Product.find(@order.product_id).plans
+        if @order && @order.plan_id
+          @plan = Plan.find(@order.plan_id)
+          @periodicities = Price.find(:all, from: @plan.prices_path)
+          if @order && @order.periodicity_id
+            @periodicity = @periodicities.select{ |periodicity| periodicity.id == @order.periodicity_id}.first
+            @price = @periodicity.value
+          end
+        end
     end
   end
 
@@ -75,6 +90,16 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order)
           .permit(:status, :product_id, :customer_id, :user_id, :periodicity_id,
-                  :price_id, :coupon, :plan_id)
+                  :price, :coupon, :plan_id)
+  end
+
+  def update_not_saving(params_order)
+    @order.product_id = params_order[:product_id]
+    @order.plan_id = params_order[:plan_id]
+    @order.customer_id = params_order[:customer_id]
+    @order.status = params_order[:status]
+    @order.price_id = params_order[:price_id]
+    @order.coupon = params_order[:coupon]
+    @order.periodicity_id = params_order[:periodicity_id]
   end
 end
