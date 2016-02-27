@@ -72,8 +72,8 @@
   </div>
 <% end %>
 </section>
-
 <script type="text/javascript">
+var id = '<%@order.id%>'
 $(function() {
   $('#order_product_id').change( function(e){
     $('#order_plan_id').html("");
@@ -82,9 +82,9 @@ $(function() {
     $('#new_order').attr("action", "<%= new_order_path %>");
     $('#new_order').submit();
 
-    $('#edit_order_1').attr("method", "get");
-    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
-    $('#edit_order_1').submit();
+    $('#edit_order_<%= @order.id %>').attr("method", "get");
+    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_<%= @order.id %>').submit();
   });
   $('#order_plan_id').change( function(e){
     $('#order_periodicity_id').html("");
@@ -92,18 +92,18 @@ $(function() {
     $('#new_order').attr("action", "<%= new_order_path %>");
     $('#new_order').submit();
 
-    $('#edit_order_1').attr("method", "get");
-    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
-    $('#edit_order_1').submit();
+    $('#edit_order_<%= @order.id %>').attr("method", "get");
+    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_<%= @order.id %>').submit();
   });
   $('#order_periodicity_id').change( function(e){
     $('#new_order').attr("method", "get");
     $('#new_order').attr("action", "<%= new_order_path %>");
     $('#new_order').submit();
 
-    $('#edit_order_1').attr("method", "get");
-    $('#edit_order_1').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
-    $('#edit_order_1').submit();
+    $('#edit_order_<%= @order.id %>').attr("method", "get");
+    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_<%= @order.id %>').submit();
   });
 });
 

@@ -1,6 +1,15 @@
 require 'rails_helper'
 
-describe 'User edits order' do
+describe 'User edits order', :js => true do
+  self.use_transactional_fixtures = false
+
+  after(:each) do
+    User.last.delete if User.last
+    Customer.last.delete if Customer.last
+    Customer.last.delete if Customer.last
+    Order.last.delete if Order.last
+  end
+
   scenario 'successfully' do
     user = create(:user, is_admin: true)
     customer = create(:customer, name: 'Carlos',
@@ -10,7 +19,8 @@ describe 'User edits order' do
     order = create(:order)
     other_order = build(:order, status: 'Concluído',
                                 customer: customer,
-                                periodicity_id: 2)
+                                periodicity_id: 2,
+                                user: order.user)
 
     login(user)
     visit edit_order_path(order)

@@ -6,6 +6,7 @@ describe 'User creates new order', :js => true do
   after(:each) do
     User.last.delete if User.last
     Customer.last.delete if Customer.last
+    Order.last.delete if Order.last
   end
 
   scenario 'successfully' do
