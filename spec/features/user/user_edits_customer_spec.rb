@@ -17,7 +17,9 @@ feature 'Salesman edits customer' do
     fill_in 'customer[contact_name]', with: new_customer.contact_name
     fill_in 'customer[cpf_cnpj]',     with: new_customer.cpf_cnpj
 
-    click_on 'Create'
+    within ('section#customer_form') do
+      click_on 'Update'
+    end
 
     expect(page).to have_content new_customer.name
     expect(page).to have_content new_customer.phone
