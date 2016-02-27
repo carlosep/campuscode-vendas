@@ -62,14 +62,14 @@ class OrdersController < ApplicationController
   private
 
   def set_collections
-    @products = Product.all
     @customers = Customer.all
+    @products = Product.all
     if @order && @order.product_id
       @plans = Product.find(@order.product_id).plans
-        if @order && @order.plan_id
+        if @order.plan_id
           @plan = Plan.find(@order.plan_id)
           @periodicities = Price.find(:all, from: @plan.prices_path)
-          if @order && @order.periodicity_id
+          if @order.periodicity_id
             @periodicity = @periodicities.select{ |periodicity| periodicity.id == @order.periodicity_id}.first
             @price = @periodicity.value
           end
@@ -98,7 +98,7 @@ class OrdersController < ApplicationController
     @order.plan_id = params_order[:plan_id]
     @order.customer_id = params_order[:customer_id]
     @order.status = params_order[:status]
-    @order.price_id = params_order[:price_id]
+    @order.price = params_order[:price]
     @order.coupon = params_order[:coupon]
     @order.periodicity_id = params_order[:periodicity_id]
   end

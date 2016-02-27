@@ -14,7 +14,13 @@ en:
   helpers:
     submit:
       customer:
-        create: 'Save'
+        create: 'Create'
+        update: 'Update'
+      order:
+        create: 'Create'
+        update: 'Update'
+      user:
+        create: 'Create'
         update: 'Update'
     # labels:
     #   defaults:
