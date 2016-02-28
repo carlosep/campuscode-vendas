@@ -66,16 +66,9 @@ describe 'User creates new order', :js => true do
   end
 
   scenario 'Failure with invalid coupon' do
-    user = create(:user, email: 'a@gmail.com', password: '12345678')
-    customer = create(:customer, email: 'a@gmail.com')
-    order = build(:order, user: user, customer: customer)
+    order = build(:order)
 
-    visit root_path
-
-    fill_in 'user[email]',    with: 'a@gmail.com'
-    fill_in 'user[password]', with: '12345678'
-
-    click_on 'Log in'
+    login
 
     visit new_order_path
 
