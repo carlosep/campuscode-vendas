@@ -23,4 +23,8 @@ class Order < ActiveRecord::Base
     Periodicity.find(periodicity_id)
   end
 
+  def give_discount
+    (price * (1-Coupon.find(coupon).discount/100)).round(2)
+  end
+
 end
