@@ -83,7 +83,7 @@ $(function() {
     $('#new_order').submit();
 
     $('#edit_order_<%= @order.id %>').attr("method", "get");
-    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) if @order.persisted? %>");
     $('#edit_order_<%= @order.id %>').submit();
   });
   $('#order_plan_id').change( function(e){
@@ -93,7 +93,7 @@ $(function() {
     $('#new_order').submit();
 
     $('#edit_order_<%= @order.id %>').attr("method", "get");
-    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) if @order.persisted? %>");
     $('#edit_order_<%= @order.id %>').submit();
   });
   $('#order_periodicity_id').change( function(e){
@@ -102,7 +102,7 @@ $(function() {
     $('#new_order').submit();
 
     $('#edit_order_<%= @order.id %>').attr("method", "get");
-    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) unless request.path == new_order_path %>");
+    $('#edit_order_<%= @order.id %>').attr("action", "<%= edit_order_path(@order) if @order.persisted? %>");
     $('#edit_order_<%= @order.id %>').submit();
   });
 });

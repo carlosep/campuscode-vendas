@@ -18,18 +18,12 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.build(order_params)
     set_collections
-    if params[:order][:coupon].empty?
+
+    if order_params[:coupon].empty?
       @order.save
       respond_with @order
     else
-      coupon = check_coupon(params[:order][:coupon])
-      if coupon == false
-        flash[:alert] = 'Invalid coupon!'
-        render :new
-      else
-        @order.save
-        respond_with @order
-      end
+      with_coupon
     end
   end
 
@@ -78,9 +72,19 @@ class OrdersController < ApplicationController
   end
 
   def check_coupon(coupon_code)
-    coupon = Coupon.find(coupon_code)
-  rescue
-    false
+    @coupon = Coupon.find(coupon_code)
+    if @coupon == false
+      flash[:alert] = 'Invalid coupon!'
+      render :new
+    end
+  end
+
+  def with_coupon
+    check_coupon(order_params[:coupon])
+    if @coupon
+      @order.save
+      respond_with @order
+    end
   end
 
   def set_order

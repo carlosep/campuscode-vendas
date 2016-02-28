@@ -43,25 +43,18 @@ describe 'User creates new order', :js => true do
 
     visit new_order_path
 
-<<<<<<< HEAD
     select order.product.name, from: 'Product'
     select 'Profissional', from: 'Plan'
-    select order.customer.name, from: "Customer"
-    select order.periodicity.name, from: "Periodicity"
+    select order.customer.name, from: 'Customer'
+    select order.periodicity.name, from: 'Periodicity'
 
-=======
-    select order.customer.name, from: 'order[customer_id]'
-    select order.product.name, from: 'order[product_id]'
-    select order.plan.name, from: 'order[plan_id]'
-    select order.periodicity.name, from: "order[periodicity_id]"
->>>>>>> origin/master
-    fill_in 'order[coupon]', with: 'MAQ7556'
+    fill_in 'order[coupon]', with: coupon.code
 
     within ('section#order_form') do
       click_on 'Create'
     end
 
-    expect(page).to have_content 'MAQ7556'
+    expect(page).to have_content coupon.code
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.created_at
     expect(page).to have_content order.status
@@ -90,10 +83,10 @@ describe 'User creates new order', :js => true do
     select 'Profissional',              from: 'Plan'
     select order.customer.name,         from: 'Customer'
     select order.periodicity.name,      from: 'Periodicity'
-    fill_in 'order[coupon]',            with: 'MAQ3212'
+    fill_in 'order[coupon]',            with: 'BLABLA'
 
     within('section#order_form') do
-      click_on 'Create Order'
+      click_on 'Create'
     end
 
     expect(page).to have_css :span, text: 'Invalid coupon!', visible: true

@@ -9,4 +9,9 @@ module Macros
 
     click_on 'Log in'
   end
+
+  def coupon
+    hash = Promotion.find(1).get(:next_coupon)
+    OpenStruct.new(hash)
+  end
 end
