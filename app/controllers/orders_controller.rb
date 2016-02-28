@@ -53,9 +53,9 @@ class OrdersController < ApplicationController
     @customers = Customer.all
     @products = Product.all
     if @order && @order.product_id
-      @plans = Product.find(@order.product_id).plans
+      @plans = Plan.find(:all, from: @order.product.plans_path)
         if @order.plan_id
-          @plan = Plan.find(@order.plan_id)
+          @plan = @order.plan
           @periodicities = Price.find(:all, from: @plan.prices_path)
           if @order.periodicity_id
             @periodicity = @periodicities.select{ |periodicity| periodicity.id == @order.periodicity_id}.first
