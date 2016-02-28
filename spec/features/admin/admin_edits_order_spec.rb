@@ -4,10 +4,9 @@ describe 'Admin edits order', :js => true do
   self.use_transactional_fixtures = false
 
   after(:each) do
-    User.last.delete if User.last
-    Customer.last.delete if Customer.last
-    Customer.last.delete if Customer.last
-    Order.last.delete if Order.last
+    User.delete(User.all) if User.last
+    Customer.delete(Customer.all) if Customer.last
+    Order.delete(Order.all) if Order.last
   end
 
   scenario 'successfully' do
@@ -40,6 +39,6 @@ describe 'Admin edits order', :js => true do
     expect(page).to have_content other_order.status
     expect(page).to have_content other_order.plan.name
     expect(page).to have_content other_order.periodicity.name
-    expect(page).to have_content '5.99'
+    expect(page).to have_content other_order.price
   end
 end

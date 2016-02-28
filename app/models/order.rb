@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   validates :product_id, :plan_id, :customer_id, presence: true
 
   def product
-    Product.find(product_id).product
+    Product.find(product_id)
   end
 
   def plan
