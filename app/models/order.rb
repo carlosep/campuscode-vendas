@@ -27,4 +27,7 @@ class Order < ActiveRecord::Base
     (price * (1-Coupon.find(coupon).discount/100)).round(2)
   end
 
+  def burn_coupon
+    Coupon.post("#{coupon}/burn",{client_name: customer.name,client_phone: customer.name,salesman_name: user.name,discount_value: Coupon.find(coupon).discount})
+  end
 end

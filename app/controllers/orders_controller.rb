@@ -83,6 +83,7 @@ class OrdersController < ApplicationController
     check_coupon(order_params[:coupon])
     if @coupon
       @order.price = @order.give_discount
+      @order.burn_coupon
       @order.save
       respond_with @order
     end
