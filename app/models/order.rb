@@ -28,6 +28,9 @@ class Order < ActiveRecord::Base
   end
 
   def burn_coupon
-    Coupon.post("#{coupon}/burn",{client_name: customer.name,client_phone: customer.name,salesman_name: user.name,discount_value: Coupon.find(coupon).discount})
+    Coupon.post("#{coupon}/burn",{client_name: customer.name,
+                                  client_phone: customer.name,
+                                  salesman_name: user.name,
+                                  discount_value: Coupon.find(coupon).discount})
   end
 end
