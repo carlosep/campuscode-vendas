@@ -29,8 +29,9 @@ describe 'Admin edits order', :js => true do
     select other_order.product.name, from: 'order[product_id]'
     select other_order.plan.name, from: 'order[plan_id]'
     select other_order.periodicity.name, from: 'order[periodicity_id]'
-
-    click_on "Update"
+    within ('section#order_form') do
+      click_on 'Update'
+    end
 
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.user.name

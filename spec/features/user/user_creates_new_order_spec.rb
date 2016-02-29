@@ -43,11 +43,10 @@ describe 'User creates new order', :js => true do
 
     visit new_order_path
 
-    select order.product.name, from: 'Product'
-    select 'Profissional', from: 'Plan'
-    select order.customer.name, from: 'Customer'
-    select order.periodicity.name, from: 'Periodicity'
-
+    select order.customer.name, from: 'order[customer_id]'
+    select order.product.name, from: 'order[product_id]'
+    select order.plan.name, from: 'order[plan_id]'
+    select order.periodicity.name, from: "order[periodicity_id]"
     fill_in 'order[coupon]', with: coupon.code
 
     within ('section#order_form') do
@@ -72,10 +71,10 @@ describe 'User creates new order', :js => true do
 
     visit new_order_path
 
-    select order.product.name,          from: 'Product'
-    select 'Profissional',              from: 'Plan'
-    select order.customer.name,         from: 'Customer'
-    select order.periodicity.name,      from: 'Periodicity'
+    select order.customer.name, from: 'order[customer_id]'
+    select order.product.name, from: 'order[product_id]'
+    select order.plan.name, from: 'order[plan_id]'
+    select order.periodicity.name, from: "order[periodicity_id]"
     fill_in 'order[coupon]',            with: 'BLABLA'
 
     within('section#order_form') do
