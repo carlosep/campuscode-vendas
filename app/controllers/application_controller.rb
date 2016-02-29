@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   protected
+
   def user_admin
     unless current_user.is_admin?
       flash[:notice] = 'Você não é o administrador'

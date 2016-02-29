@@ -4,9 +4,12 @@ feature 'Salesman edits customer' do
   scenario 'Successfully' do
     customer = create(:customer)
     login
-    new_customer = build(:customer, name: 'Gabriel', phone: '11 989314294',
-                         address: 'Diadema', contact_name: 'Gabriel',
-                         email: 'gabriel@gmail.com', cpf_cnpj: '36476847163')
+    new_customer = build(:customer, name: 'Gabriel',
+                                    phone: '11 989314294',
+                                    address: 'Diadema',
+                                    contact_name: 'Gabriel',
+                                    email: 'gabriel@gmail.com',
+                                    cpf_cnpj: '36476847163')
 
     visit edit_customer_path(customer)
 
@@ -20,9 +23,7 @@ feature 'Salesman edits customer' do
     select 'Março',  from: 'customer[birth_date(2i)]'
     select '16',     from: 'customer[birth_date(3i)]'
 
-    within ('section#customer_form') do
-      click_on 'Atualizar'
-    end
+    click_on 'Atualizar'
 
     expect(page).to have_content new_customer.name
     expect(page).to have_content new_customer.phone

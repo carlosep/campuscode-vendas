@@ -42,7 +42,6 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
-
     click_on 'Criar'
 
     expect(page).to have_css :span, text: 'Nome não pode ser branco',
@@ -52,7 +51,6 @@ describe 'Salesman registers a new customer' do
   scenario 'and failure when forget to fill Phone fields' do
     login
     visit new_customer_path
-
 
     click_on 'Criar'
 
@@ -74,7 +72,6 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
-
     click_on 'Criar'
 
     expect(page).to have_css :span, text: 'Endereço não pode ser branco',
@@ -94,7 +91,6 @@ describe 'Salesman registers a new customer' do
   scenario 'Failure with invalid email' do
     login
     customer = build(:customer)
-
 
     visit new_customer_path
 
@@ -165,7 +161,6 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[address]',       with: customer.address
     fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',  with: customer.contact_name
-
 
     click_on 'Criar'
 

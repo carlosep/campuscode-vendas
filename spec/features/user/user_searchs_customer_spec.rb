@@ -8,6 +8,7 @@ feature 'User searchs customer' do
     visit root_path
 
     fill_in 'Search customer', with: '81239932006'
+
     click_on 'Search'
 
     expect(current_path).to eq customer_path(customer)
@@ -27,6 +28,7 @@ feature 'User searchs customer' do
     visit root_path
 
     fill_in 'Search customer', with: '86584402000104'
+
     click_on 'Search'
 
     expect(current_path).to eq customer_path(customer)
@@ -40,12 +42,11 @@ feature 'User searchs customer' do
   scenario 'failure' do
     login
 
-    customer = create(:customer)
-
     visit root_path
 
     fill_in 'Search customer', with: 'aaaaaa'
-    click_on  'Search'
+
+    click_on 'Search'
 
     expect(page).to have_content 'Customer not found'
   end

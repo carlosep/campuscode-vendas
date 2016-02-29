@@ -12,14 +12,13 @@ describe 'Admin creates a new admin' do
     fill_in 'user[email]', with: user.email
     check 'user[is_admin]'
 
-    click_on "Criar"
+    click_on 'Criar'
+
     expect(page).to have_content user.name
     expect(page).to have_content user.email
   end
 
   scenario 'unsuccessfully' do
-    user = build(:user)
-
     login
     visit new_user_path
 

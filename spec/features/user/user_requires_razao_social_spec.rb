@@ -6,7 +6,7 @@ describe 'Salesman registers a new customer with cnpj' do
 
     customer = build(:customer, cpf_cnpj: '86584402000104',
                                 company_name: 'Campus code',
-                                contact_name: 'Alan Djah' )
+                                contact_name: 'Alan Djah')
 
     visit new_customer_path
 

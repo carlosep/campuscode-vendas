@@ -8,11 +8,11 @@ describe 'Salesman registers a new customer without a contact name' do
 
     visit new_customer_path
 
-    fill_in 'customer[name]',         with: customer.name
-    fill_in 'customer[email]',        with: customer.email
-    fill_in 'customer[phone]',        with: customer.phone
-    fill_in 'customer[address]',        with: customer.address
-    fill_in 'customer[cpf_cnpj]',        with: customer.cpf_cnpj
+    fill_in 'customer[name]', with: customer.name
+    fill_in 'customer[email]', with: customer.email
+    fill_in 'customer[phone]', with: customer.phone
+    fill_in 'customer[address]', with: customer.address
+    fill_in 'customer[cpf_cnpj]', with: customer.cpf_cnpj
 
     click_on 'Criar'
 
@@ -30,11 +30,11 @@ describe 'Salesman registers a new customer without a contact name' do
 
     visit new_customer_path
 
-    fill_in 'customer[name]',         with: customer.name
-    fill_in 'customer[email]',        with: customer.email
-    fill_in 'customer[phone]',        with: customer.phone
-    fill_in 'customer[address]',        with: customer.address
-    fill_in 'customer[cpf_cnpj]',        with: customer.cpf_cnpj
+    fill_in 'customer[name]', with: customer.name
+    fill_in 'customer[email]', with: customer.email
+    fill_in 'customer[phone]', with: customer.phone
+    fill_in 'customer[address]', with: customer.address
+    fill_in 'customer[cpf_cnpj]', with: customer.cpf_cnpj
 
     click_on 'Criar'
 
