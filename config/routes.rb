@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root 'home#index'
 
-  resources :customers, only: [:new, :create, :show, :edit, :update] do
+  resources :customers, except: :destroy do
     collection do
       get 'search'
     end

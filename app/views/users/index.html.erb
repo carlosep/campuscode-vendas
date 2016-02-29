@@ -1,9 +1,17 @@
 <h1 class="ls-title-intro ls-ico-user">Vendedores</h1>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="hidden-xs">Email</th>
+    </tr>
+  </thead>
 <% @users.each do |user| %>
-  <span>
-    <%= link_to user_path(user) do %>
-      <b><%= user.name %></b>
-      (<%= user.email %>) <br>
-    <% end %>
-  </span>
+  <tbody>
+    <tr>
+      <td><%= link_to user.name, user_path(user) %></td>
+      <td class="hidden-xs"><%= user.email %></td>
+    </tr>
+  </tbody>
+</table>
 <% end %>

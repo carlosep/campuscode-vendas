@@ -1,0 +1,21 @@
+<h1 class="ls-title-intro ls-ico-user">Customers</h1>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th><%= t '.name'%></th>
+      <th class="hidden-xs"><%= 'CPF/CNPJ' %></th>
+      <th><%= t '.email'%></th>
+      <th class="hidden-xs"><%= t '.company_name'%></th>
+    </tr>
+  </thead>
+  <% @customers.each do |customer| %>
+    <tbody>
+      <tr>
+        <td> <%= link_to customer.name, customer_path(customer) %> </td>
+        <td class="hidden-xs"><%= customer.cpf_cnpj %></td>
+        <td><%= customer.email %></td>
+        <td class="hidden-xs"><%= customer.company_name %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

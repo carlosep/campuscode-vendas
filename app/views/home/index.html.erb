@@ -1,6 +1,6 @@
 <h1 class="ls-title-intro ls-ico-home">Vendas</h1>
 
 <%= simple_form_for :search, url: search_customers_path, method: :get do |f| %>
-  <%= f.input :query, label: 'Search customer' %>
-  <%= f.submit 'Search' %>
+    <%= f.input :query, label: 'Search customer' %>
+    <%= f.submit 'Search', class: 'ls-btn-primary' %>
 <% end %>

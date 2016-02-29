@@ -13,6 +13,10 @@ class CustomersController < ApplicationController
     respond_with @customer
   end
 
+  def index
+    @customers = Customer.all
+  end
+
   def show
   end
 
