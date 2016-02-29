@@ -1,0 +1,40 @@
+pt-BR:
+  simple_form:
+    "yes": 'Sim'
+    "no": 'Não'
+    required:
+      text: 'requerido'
+      mark: '*'
+    error_notification:
+      default_message: "Por favor verifique os problemas abaixo:"
+    labels:
+      user:
+        name: Nome
+        is_admin: Administrador
+        users: Usuários
+      customer:
+        name: Nome
+        phone: Telefone
+        cpf_cnpj: CPF/CNPJ
+        adress: Endereço
+        contact_name: Nome do Contato
+        company_name: Nome da Empresa
+        birth_date: Data de Nascimento
+      order:
+        customer: Cliente
+        product_id: Produto
+        plan_id: Plano
+        periodicity_id: Periodicidade
+        price: Preço
+        coupon: Cupom
+  helpers:
+    submit:
+      customer:
+        create: Criar
+        update: Atualizar
+      order:
+        create: Criar
+        update: Atualizar
+      user:
+        create: Criar
+        update: Atualizar

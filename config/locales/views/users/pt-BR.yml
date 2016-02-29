@@ -1,0 +1,11 @@
+pt-BR:
+  users:
+    new:
+      create_user: Criar Usuário
+    show:
+      orders: Pedidos
+      name: Nome
+      creation_date: Data de Criação
+    index:
+      name: Nome
+      sellers: Vendedores

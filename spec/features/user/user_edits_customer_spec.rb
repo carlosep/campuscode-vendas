@@ -16,9 +16,12 @@ feature 'Salesman edits customer' do
     fill_in 'customer[email]',        with: new_customer.email
     fill_in 'customer[contact_name]', with: new_customer.contact_name
     fill_in 'customer[cpf_cnpj]',     with: new_customer.cpf_cnpj
+    select '1995',   from: 'customer[birth_date(1i)]'
+    select 'Março',  from: 'customer[birth_date(2i)]'
+    select '16',     from: 'customer[birth_date(3i)]'
 
     within ('section#customer_form') do
-      click_on 'Update'
+      click_on 'Atualizar'
     end
 
     expect(page).to have_content new_customer.name
@@ -27,5 +30,6 @@ feature 'Salesman edits customer' do
     expect(page).to have_content new_customer.contact_name
     expect(page).to have_content new_customer.address
     expect(page).to have_content new_customer.cpf_cnpj
+    expect(page).to have_content new_customer.birth_date
   end
 end

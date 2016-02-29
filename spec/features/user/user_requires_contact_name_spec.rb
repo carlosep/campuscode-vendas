@@ -14,7 +14,7 @@ describe 'Salesman registers a new customer without a contact name' do
     fill_in 'customer[address]',        with: customer.address
     fill_in 'customer[cpf_cnpj]',        with: customer.cpf_cnpj
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(page).to have_content customer.name
     expect(page).to have_content customer.email
@@ -36,7 +36,7 @@ describe 'Salesman registers a new customer without a contact name' do
     fill_in 'customer[address]',        with: customer.address
     fill_in 'customer[cpf_cnpj]',        with: customer.cpf_cnpj
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(page).to have_css :span, 'Contact name can\'t be blank'
   end

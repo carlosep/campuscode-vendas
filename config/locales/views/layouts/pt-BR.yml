@@ -1,0 +1,9 @@
+pt-BR:
+  layouts:
+    application:
+      users: Vendedores
+      create_customer: Criar Cliente
+      create_user: Criar Usuário
+      orders: Pedidos
+      create_order: Criar Pedido
+      customers: Clientes

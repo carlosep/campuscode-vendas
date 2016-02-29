@@ -1,0 +1,26 @@
+pt-BR:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        name: Nome
+        email: Email
+      customer:
+        name: Nome
+        email: Email
+        phone: Telefone
+        cpf_cnpj: CPF/CNPJ
+        address: Endereço
+        contact_name: Nome do Contato
+        company_name: Nome da Empresa
+      order:
+        plan_id: Plano
+        product_id: Produto
+        customer_id: Cliente
+        periodicity_id: Periodicidade
+    errors:
+      messages:
+        blank: "%{attribute} não pode ser branco"
+        invalid: "%{attribute} é inválido"
+        taken: "%{attribute} já foi usado"

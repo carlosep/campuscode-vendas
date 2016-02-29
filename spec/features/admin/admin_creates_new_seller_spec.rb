@@ -11,7 +11,7 @@ describe 'Admin creates a new seller' do
     fill_in 'user[name]', with: user.name
     fill_in 'user[email]', with: user.email
 
-    click_on I18n.t('users.new.create_user_button')
+    click_on "Criar"
 
     expect(page).to have_content user.name
     expect(page).to have_content user.email

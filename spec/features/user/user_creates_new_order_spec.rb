@@ -22,7 +22,7 @@ describe 'User creates new order', :js => true do
     select order.periodicity.name, from: "order[periodicity_id]"
 
     within ('section#order_form') do
-      click_on 'Create'
+      click_on 'Criar'
     end
 
     expect(page).to have_content "Order #{order.id}"
@@ -51,7 +51,7 @@ describe 'User creates new order', :js => true do
     fill_in 'order[coupon]', with: code
 
     within ('section#order_form') do
-      click_on 'Create'
+      click_on 'Criar'
     end
 
     expect(Coupon.get(code)["burned?"]).to eq true
@@ -79,8 +79,8 @@ describe 'User creates new order', :js => true do
     select order.periodicity.name, from: "order[periodicity_id]"
     fill_in 'order[coupon]',            with: 'BLABLA'
 
-    within('section#order_form') do
-      click_on 'Create'
+    within ('section#order_form') do
+      click_on 'Criar'
     end
 
     expect(page).to have_css :span, text: 'Invalid coupon!', visible: true

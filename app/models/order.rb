@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :customer
-  validates :product_id, :plan_id, :customer_id, presence: true
+  validates :product_id, :plan_id, :customer_id, :periodicity_id, presence: true
 
   def product
     Product.find(product_id)

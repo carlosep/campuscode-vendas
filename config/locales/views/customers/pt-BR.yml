@@ -1,0 +1,18 @@
+pt-BR:
+  customers:
+    new:
+      create_customer: Criar Cliente
+    edit:
+      edit_customer: Editar Cliente
+    index:
+      customers: Clientes
+      name: Nome
+      cpf_cnpj: CPF/CNPJ
+      company_name: Nome da Empresa
+    show:
+      cpf_cnpj: CPF/CNPJ
+      phone: Telefone
+      contact_name: Nome do Contato
+      address: Endereço
+      company_name: Nome da Empresa
+      birth_date: Data de Nascimento

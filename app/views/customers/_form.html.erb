@@ -18,14 +18,14 @@
         <%= f.input :address, error_html: { class: 'ls-help-message'} %>
       </label>
       <label class="ls-label col-md-3">
+        <%= f.input :birth_date, start_year: Time.now.year - 100,
+                                       error_html: { class: 'ls-help-message'} %>
+      </label>
+      <label class="ls-label col-md-3">
         <%= f.input :contact_name, error_html: { class: 'ls-help-message'} %>
       </label>
       <label class="ls-label col-md-3">
         <%= f.input :company_name, error_html: { class: 'ls-help-message'} %>
-      </label>
-      <label class="ls-label col-md-3">
-        <%= f.input :birth_date, start_year: Time.now.year - 100,
-                                       error_html: { class: 'ls-help-message'} %>
       </label>
     </div>
     <div class='submit-form'>
