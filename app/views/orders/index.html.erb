@@ -1,9 +1,31 @@
 <h1 class="ls-title-intro ls-ico-cart"><%= t('.orders') %></h1>
 
-<% @orders.each do |order| %>
-  <%= link_to order_path(order) do %>
-    <strong><%= order.id %></strong> |
-    <%= order.product.name %>|
-    <%= order.status %></p><br>
+<table class="ls-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th class="hidden-xs">Nome</th>
+      <th>Status</th>
+      <th class="hidden-xs">Data</th>
+    </tr>
+  </thead>
+<h3><%= t'.orders' %> </h3><br>
+  <% @orders.each do |order| %>
+  <tbody>
+    <tr>
+      <td>#<%= order.id %></td>
+      <td class="hidden-xs"><%= link_to order.product.name, order_path(order) %></td>
+      <% if order.status == 'Cancelado' %>
+        <td class="ls-tag-danger"><%= order.status %></td>
+      <% end %>
+      <% if order.status == 'Aberto' %>
+        <td class="ls-tag-warning"><%= order.status %></td>
+      <% end %>
+      <% if order.status == 'Concluído' %>
+        <td class="ls-tag-success"><%= order.status %></td>
+      <% end %>
+      <td class="hidden-xs"><%= order.created_at.to_date %></td>
+    </tr>
+  </tbody>
   <% end %>
-<% end %>
+</table>
