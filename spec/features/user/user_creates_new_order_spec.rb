@@ -43,17 +43,19 @@ describe 'User creates new order', :js => true do
 
     visit new_order_path
 
+    code = coupon.code
     select order.customer.name, from: 'order[customer_id]'
     select order.product.name, from: 'order[product_id]'
     select order.plan.name, from: 'order[plan_id]'
     select order.periodicity.name, from: "order[periodicity_id]"
-    fill_in 'order[coupon]', with: coupon.code
+    fill_in 'order[coupon]', with: code
 
     within ('section#order_form') do
       click_on 'Create'
     end
 
-    expect(page).to have_content coupon.code
+    expect(Coupon.get(code)["burned?"]).to eq true
+    expect(page).to have_content code
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.created_at
     expect(page).to have_content order.status

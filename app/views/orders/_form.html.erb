@@ -7,7 +7,7 @@
 </ul>
 <% end %>
 </div>
-<section id="order_form">
+<section class="ls-form-horizontal" id="order_form">
 <%= simple_form_for @order do |f| %>
   <div class="form-inputs">
     <% if current_user.is_admin? %>
