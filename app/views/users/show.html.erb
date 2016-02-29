@@ -15,7 +15,7 @@
     <% @user.orders.each do |order| %>
     <tbody>
       <tr>
-        <td><%= order.id %></td>
+        <td>#<%= order.id %></td>
         <td class="hidden-xs"><%= link_to order.product.name, order_path(order) %></td>
         <% if order.status == 'Cancelado' %>
           <td class="ls-tag-danger"><%= order.status %></td>
@@ -26,7 +26,7 @@
         <% if order.status == 'Concluído' %>
           <td class="ls-tag-success"><%= order.status %></td>
         <% end %>
-        <td class="hidden-xs">21/09/2013 as 20:00 PM</td>
+        <td class="hidden-xs"><%= order.created_at.to_date %></td>
       </tr>
     </tbody>
     <% end %>
