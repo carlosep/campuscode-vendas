@@ -54,6 +54,7 @@ describe 'User creates new order', :js => true do
       click_on 'Create'
     end
 
+    expect(Coupon.get(code)["burned?"]).to eq true
     expect(page).to have_content code
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.created_at
