@@ -2,12 +2,25 @@
 <span>
   <strong><%= t '.email'%></strong>: <%= @user.email %>
   <hr>
+  <table class="ls-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th class="hidden-xs">Nome</th>
+        <th>Status</th>
+        <th class="hidden-xs">Data</th>
+      </tr>
+    </thead>
   <h3><%= t'.orders' %> </h3><br>
     <% @user.orders.each do |order| %>
-      <%= link_to order_path(order) do %>
-        <strong><%= order.id %></strong> |
-        <%= order.product.name %>|
-        <%= order.status %></p><br>
-      <% end %>
+    <tbody>
+      <tr>
+        <td><%= order.id %></td>
+        <td class="hidden-xs"><%= link_to order.product.name, order_path(order) %></td>
+        <td><%= order.status %></td>
+        <td class="hidden-xs">21/09/2013 as 20:00 PM</td>
+      </tr>
+    </tbody>
     <% end %>
+  </table>
 </span>
