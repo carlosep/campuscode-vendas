@@ -16,9 +16,15 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.create(order_params)
+    @order = current_user.orders.build(order_params)
     set_collections
-    respond_with @order
+
+    if order_params[:coupon].empty?
+      @order.save
+      respond_with @order
+    else
+      with_coupon
+    end
   end
 
   def edit
@@ -53,15 +59,32 @@ class OrdersController < ApplicationController
     @customers = Customer.all
     @products = Product.all
     if @order && @order.product_id
-      @plans = Product.find(@order.product_id).plans
+      @plans = Plan.find(:all, from: @order.product.plans_path)
         if @order.plan_id
-          @plan = Plan.find(@order.plan_id)
+          @plan = @order.plan
           @periodicities = Price.find(:all, from: @plan.prices_path)
           if @order.periodicity_id
             @periodicity = @periodicities.select{ |periodicity| periodicity.id == @order.periodicity_id}.first
             @price = @periodicity.value
           end
         end
+    end
+  end
+
+  def check_coupon(coupon_code)
+    @coupon = Coupon.find(coupon_code)
+    if @coupon == false
+      flash[:alert] = 'Invalid coupon!'
+      render :new
+    end
+  end
+
+  def with_coupon
+    check_coupon(order_params[:coupon])
+    if @coupon
+      @order.price = @order.give_discount
+      @order.save
+      respond_with @order
     end
   end
 

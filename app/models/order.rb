@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   validates :product_id, :plan_id, :customer_id, presence: true
 
   def product
-    Product.find(product_id).product
+    Product.find(product_id)
   end
 
   def plan
@@ -21,6 +21,10 @@ class Order < ActiveRecord::Base
 
   def periodicity
     Periodicity.find(periodicity_id)
+  end
+
+  def give_discount
+    (price * (1-Coupon.find(coupon).discount/100)).round(2)
   end
 
 end

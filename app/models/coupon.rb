@@ -1,7 +1,7 @@
 require 'active_resource'
 
-class Product < ActiveResource::Base
-  self.site = 'http://localhost:3001/api'
+class Coupon < ActiveResource::Base
+  self.site = 'http://localhost:3002/api'
 
   def self.find(*args)
     super(*args)
