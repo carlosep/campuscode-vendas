@@ -9,6 +9,8 @@ pt-BR:
       name: Nome
       cpf_cnpj: CPF/CNPJ
       company_name: Nome da Empresa
+      search_customer: Buscar Cliente
+      search: Buscar
     show:
       cpf_cnpj: CPF/CNPJ
       phone: Telefone

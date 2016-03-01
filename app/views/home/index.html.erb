@@ -1,6 +1,35 @@
 <h1 class="ls-title-intro ls-ico-home">Vendas</h1>
 
-<%= simple_form_for :search, url: search_customers_path, method: :get do |f| %>
-    <%= f.input :query, label: 'Search customer' %>
-    <%= f.submit 'Search', class: 'ls-btn-primary' %>
-<% end %>
+<span>
+  <strong><%= t '.email'%></strong>: <%= current_user.email %>
+  <hr>
+  <table class="ls-table">
+    <thead>
+      <tr>
+        <th><%=t '.id'%></th>
+        <th class="hidden-xs"><%=t '.name'%></th>
+        <th><%=t '.status'%></th>
+        <th class="hidden-xs"><%=t '.creation_date'%></th>
+      </tr>
+    </thead>
+  <h3><%= t '.my_orders' %> </h3><br>
+    <% current_user.orders.each do |order| %>
+    <tbody>
+      <tr>
+        <td>#<%= order.id %></td>
+        <td class="hidden-xs"><%= link_to order.product.name, order_path(order) %></td>
+        <% if order.status == 'Cancelado' %>
+          <td class="ls-tag-danger"><%= order.status %></td>
+        <% end %>
+        <% if order.status == 'Aberto' %>
+          <td class="ls-tag-warning"><%= order.status %></td>
+        <% end %>
+        <% if order.status == 'Concluído' %>
+          <td class="ls-tag-success"><%= order.status %></td>
+        <% end %>
+        <td class="hidden-xs"><%= order.created_at.to_date %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</span>
