@@ -8,7 +8,7 @@ describe 'User edits order status' do
     login(user)
     visit order_path(order)
 
-    click_on "Concluir Pedido"
+    click_on 'Concluir Pedido'
 
     expect(page).to have_content "Você concluiu o pedido #{order.id}"
     expect(page).to have_content 'Concluído'
@@ -21,7 +21,7 @@ describe 'User edits order status' do
     login(user)
     visit order_path(order)
 
-    click_on "Cancelar Pedido"
+    click_on 'Cancelar Pedido'
 
     expect(page).to have_content "Você cancelou o pedido #{order.id}"
     expect(page).to have_content 'Cancelado'
@@ -57,7 +57,7 @@ describe 'User edits order status' do
     login(user)
     visit order_path(order)
 
-    click_on "Concluir Pedido"
+    click_on 'Concluir Pedido'
 
     expect(ActionMailer::Base.deliveries.count).to eq sent_count + 1
   end

@@ -1,0 +1,20 @@
+pt-BR:
+  orders:
+    new:
+      create_order: Criar Pedido
+    edit:
+      edit_order: Editar Pedido
+    show:
+      order: Pedido
+      seller_name: Nome do Vendedor
+      customer: Cliente
+      product: Produto
+      plan: Plano
+      periodicity: Periodicidade
+      price: Preço
+      coupon: Cupom
+      created_at: Criado em
+    index:
+      orders: Pedidos
+      name: Nome
+      creation_date: Data de Criação

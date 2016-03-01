@@ -1,4 +1,4 @@
-<h2 class="ls-title-intro ls-ico-user"><%= t('.create_seller') %></h2>
+<h2 class="ls-title-intro ls-ico-user"><%= t('.create_user') %></h2>
 <section id="customer_form">
   <%= simple_form_for @user do |f| %>
 
@@ -6,12 +6,10 @@
       <label class="ls-label col-md-3">
         <%= f.input :name, required: true,
                            autofocus: true,
-                           class: 'ls-login-bg-user ls-field-lg',
-                           error_html: { class: 'ls-success ls-help-message'}  %>
+                           error_html: { class: 'ls-success ls-help-message'} %>
       </label>
       <label class="ls-label col-md-3">
         <%= f.input :email, required: true,
-                            class: 'ls-login-bg-user ls-field-lg',
                             error_html: { class: 'ls-help-message'}  %>
       </label>
       <label class="ls-label-text col-md-3">

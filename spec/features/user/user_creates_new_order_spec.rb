@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User creates new order', :js => true do
+describe 'User creates new order', js: true do
   self.use_transactional_fixtures = false
 
   after(:each) do
@@ -19,11 +19,9 @@ describe 'User creates new order', :js => true do
     select order.customer.name, from: 'order[customer_id]'
     select order.product.name, from: 'order[product_id]'
     select order.plan.name, from: 'order[plan_id]'
-    select order.periodicity.name, from: "order[periodicity_id]"
+    select order.periodicity.name, from: 'order[periodicity_id]'
 
-    within ('section#order_form') do
-      click_on 'Create'
-    end
+    click_on 'Criar'
 
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.customer.name
@@ -33,7 +31,6 @@ describe 'User creates new order', :js => true do
     expect(page).to have_content order.user.name
     expect(page).to have_content order.periodicity.name
     expect(page).to have_content order.price
-
   end
 
   scenario 'with coupon' do
@@ -47,14 +44,12 @@ describe 'User creates new order', :js => true do
     select order.customer.name, from: 'order[customer_id]'
     select order.product.name, from: 'order[product_id]'
     select order.plan.name, from: 'order[plan_id]'
-    select order.periodicity.name, from: "order[periodicity_id]"
+    select order.periodicity.name, from: 'order[periodicity_id]'
     fill_in 'order[coupon]', with: code
 
-    within ('section#order_form') do
-      click_on 'Create'
-    end
+    click_on 'Criar'
 
-    expect(Coupon.get(code)["burned?"]).to eq true
+    expect(Coupon.get(code)['burned?']).to eq true
     expect(page).to have_content code
     expect(page).to have_content "Order #{order.id}"
     expect(page).to have_content order.created_at
@@ -76,12 +71,10 @@ describe 'User creates new order', :js => true do
     select order.customer.name, from: 'order[customer_id]'
     select order.product.name, from: 'order[product_id]'
     select order.plan.name, from: 'order[plan_id]'
-    select order.periodicity.name, from: "order[periodicity_id]"
-    fill_in 'order[coupon]',            with: 'BLABLA'
+    select order.periodicity.name, from: 'order[periodicity_id]'
+    fill_in 'order[coupon]', with: 'BLABLA'
 
-    within('section#order_form') do
-      click_on 'Create'
-    end
+    click_on 'Criar'
 
     expect(page).to have_css :span, text: 'Invalid coupon!', visible: true
   end

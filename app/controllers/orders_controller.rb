@@ -39,53 +39,56 @@ class OrdersController < ApplicationController
   end
 
   def order_status
-    type = params[:type]
-    if type == 'finish'
-      @order.status = 'Concluído'
-      CustomerMailer.conclusion_email(@order).deliver_now
-      redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
-    elsif type == 'cancel'
-      @order.status = 'Cancelado'
-      redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
+    case params[:type]
+    when 'finish'
+      finish
+    when 'cancel'
+      cancel
     else
-      redirect_to :back, notice: 'Nothing happened.'
+      redirect_to :back
     end
     @order.save
- end
+  end
 
   private
+
+  def cancel
+    @order.status = 'Cancelado'
+    redirect_to :back, notice: "Você cancelou o pedido #{@order.id}"
+  end
+
+  def finish
+    @order.status = 'Concluído'
+    CustomerMailer.conclusion_email(@order).deliver_now
+    redirect_to :back, notice: "Você concluiu o pedido #{@order.id}"
+  end
 
   def set_collections
     @customers = Customer.all
     @products = Product.all
     if @order && @order.product_id
       @plans = Plan.find(:all, from: @order.product.plans_path)
-        if @order.plan_id
-          @plan = @order.plan
-          @periodicities = Price.find(:all, from: @plan.prices_path)
-          if @order.periodicity_id
-            @periodicity = @periodicities.select{ |periodicity| periodicity.id == @order.periodicity_id}.first
-            @price = @periodicity.value
-          end
-        end
+      if @order.plan_id
+        @periodicities = Price.find(:all, from: @order.plan.prices_path)
+        set_periodicity if @order.periodicity_id
+      end
     end
   end
 
-  def check_coupon(coupon_code)
-    @coupon = Coupon.find(coupon_code)
-    if @coupon == false
-      flash[:alert] = 'Invalid coupon!'
-      render :new
-    end
+  def set_periodicity
+    @periodicity = @periodicities.find { |p| p.id == @order.periodicity_id }
   end
 
   def with_coupon
-    check_coupon(order_params[:coupon])
+    @coupon = Coupon.find(order_params[:coupon])
     if @coupon
       @order.give_discount(@coupon.discount)
       @order.burn_coupon
       @order.save
       respond_with @order
+    else
+      flash[:alert] = 'Invalid coupon!'
+      render :new
     end
   end
 

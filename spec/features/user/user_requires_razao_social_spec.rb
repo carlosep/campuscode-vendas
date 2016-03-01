@@ -6,7 +6,7 @@ describe 'Salesman registers a new customer with cnpj' do
 
     customer = build(:customer, cpf_cnpj: '86584402000104',
                                 company_name: 'Campus code',
-                                contact_name: 'Alan Djah' )
+                                contact_name: 'Alan Djah')
 
     visit new_customer_path
 
@@ -19,10 +19,10 @@ describe 'Salesman registers a new customer with cnpj' do
     fill_in 'customer[company_name]',     with: customer.company_name
 
     select '1995',   from: 'customer[birth_date(1i)]'
-    select 'March',  from: 'customer[birth_date(2i)]'
+    select 'Março',  from: 'customer[birth_date(2i)]'
     select '16',     from: 'customer[birth_date(3i)]'
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(page).to have_content customer.name
     expect(page).to have_content customer.email
@@ -47,9 +47,10 @@ describe 'Salesman registers a new customer with cnpj' do
     fill_in 'customer[address]',          with: customer.address
     fill_in 'customer[cpf_cnpj]',         with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',     with: customer.contact_name
-    click_on 'Create'
 
-    expect(page).to have_css :span, text: 'Company name can\'t be blank',
+    click_on 'Criar'
+
+    expect(page).to have_css :span, text: 'Nome da Empresa não pode ser branco',
                                     visible: true
   end
 end

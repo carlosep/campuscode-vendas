@@ -5,13 +5,13 @@
   <table class="ls-table">
     <thead>
       <tr>
-        <th>ID</th>
-        <th class="hidden-xs">Nome</th>
-        <th>Status</th>
-        <th class="hidden-xs">Data</th>
+        <th><%=t '.id'%></th>
+        <th class="hidden-xs"><%=t '.name'%></th>
+        <th><%=t '.status'%></th>
+        <th class="hidden-xs"><%=t '.creation_date'%></th>
       </tr>
     </thead>
-  <h3><%= t'.orders' %> </h3><br>
+  <h3><%= t '.orders' %> </h3><br>
     <% @user.orders.each do |order| %>
     <tbody>
       <tr>

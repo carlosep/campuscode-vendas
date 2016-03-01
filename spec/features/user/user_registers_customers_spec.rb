@@ -14,7 +14,7 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(page).to have_content customer.name
     expect(page).to have_content customer.email
@@ -28,13 +28,13 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
-    click_on 'Create'
+    click_on 'Criar'
 
-    %w(Name Email Phone Address).each do |attr_name|
-      expect(page).to have_css :span, text: "#{attr_name} can't be blank",
+    %w(Nome Email Telefone Endereço).each do |attr_name|
+      expect(page).to have_css :span, text: "#{attr_name} não pode ser branco",
                                       visible: true
     end
-    expect(page).to have_css :span, text: 'CPF/CNPJ can\'t be blank',
+    expect(page).to have_css :span, text: 'CPF/CNPJ não pode ser branco',
                                     visible: true
   end
 
@@ -42,10 +42,9 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
+    click_on 'Criar'
 
-    click_on 'Create'
-
-    expect(page).to have_css :span, text: 'Name can\'t be blank',
+    expect(page).to have_css :span, text: 'Nome não pode ser branco',
                                     visible: true
   end
 
@@ -53,10 +52,9 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
+    click_on 'Criar'
 
-    click_on 'Create'
-
-    expect(page).to have_css :span, text: 'Phone can\'t be blank',
+    expect(page).to have_css :span, text: 'Telefone não pode ser branco',
                                     visible: true
   end
 
@@ -64,10 +62,9 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
+    click_on 'Criar'
 
-    click_on 'Create'
-
-    expect(page).to have_css :span, text: 'Email can\'t be blank',
+    expect(page).to have_css :span, text: 'Email não pode ser branco',
                                     visible: true
   end
 
@@ -75,10 +72,9 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
+    click_on 'Criar'
 
-    click_on 'Create'
-
-    expect(page).to have_css :span, text: 'Address can\'t be blank',
+    expect(page).to have_css :span, text: 'Endereço não pode ser branco',
                                     visible: true
   end
 
@@ -86,17 +82,15 @@ describe 'Salesman registers a new customer' do
     login
     visit new_customer_path
 
+    click_on 'Criar'
 
-    click_on 'Create'
-
-    expect(page).to have_css :span, text: 'CPF/CNPJ can\'t be blank',
+    expect(page).to have_css :span, text: 'CPF/CNPJ não pode ser branco',
                                     visible: true
   end
 
   scenario 'Failure with invalid email' do
     login
     customer = build(:customer)
-
 
     visit new_customer_path
 
@@ -107,10 +101,10 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(page).to_not have_content 'a%2@'
-    expect(page).to have_css :span, text: 'Email is invalid',
+    expect(page).to have_css :span, text: 'Email é inválido',
                                     visible: true
   end
 
@@ -127,10 +121,10 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[cpf_cnpj]',      with: '11111111111'
     fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(page).to_not have_content '11111111111'
-    expect(page).to have_css :span, text: 'CPF/CNPJ is invalid',
+    expect(page).to have_css :span, text: 'CPF/CNPJ é inválido',
                                     visible: true
   end
 
@@ -147,10 +141,10 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[cpf_cnpj]',      with: '12345678901234'
     fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(page).to_not have_content '12345678901234'
-    expect(page).to have_css :span, text: 'CPF/CNPJ is invalid',
+    expect(page).to have_css :span, text: 'CPF/CNPJ é inválido',
                                     visible: true
   end
 
@@ -168,7 +162,7 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',  with: customer.contact_name
 
-    click_on 'Create'
+    click_on 'Criar'
 
     expect(ActionMailer::Base.deliveries.count).to eq sent_count + 1
   end
@@ -186,9 +180,10 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[address]',       with: customer.address
     fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',  with: customer.contact_name
-    click_on 'Create'
 
-    expect(page).to have_css :span, text: 'CPF/CNPJ has already been taken',
+    click_on 'Criar'
+
+    expect(page).to have_css :span, text: 'CPF/CNPJ já foi usado',
                                     visible: true
   end
 
@@ -207,9 +202,10 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[address]',       with: customer.address
     fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',  with: customer.contact_name
-    click_on 'Create'
 
-    expect(page).to have_css :span, text: 'CPF/CNPJ has already been taken',
+    click_on 'Criar'
+
+    expect(page).to have_css :span, text: 'CPF/CNPJ já foi usado',
                                     visible: true
   end
 
@@ -226,9 +222,10 @@ describe 'Salesman registers a new customer' do
     fill_in 'customer[address]',       with: customer.address
     fill_in 'customer[cpf_cnpj]',      with: customer.cpf_cnpj
     fill_in 'customer[contact_name]',  with: customer.contact_name
-    click_on 'Create'
 
-    expect(page).to have_css :span, text: 'Email has already been taken',
+    click_on 'Criar'
+
+    expect(page).to have_css :span, text: 'Email já foi usado',
                                     visible: true
   end
 end
