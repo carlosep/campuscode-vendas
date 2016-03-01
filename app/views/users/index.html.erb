@@ -6,12 +6,12 @@
       <th class="hidden-xs"><%=t '.email'%></th>
     </tr>
   </thead>
-<% @users.each do |user| %>
   <tbody>
-    <tr>
-      <td><%= link_to user.name, user_path(user) %></td>
-      <td class="hidden-xs"><%= user.email %></td>
-    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td class="hidden-xs"><%= user.email %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-<% end %>
