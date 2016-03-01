@@ -5,11 +5,11 @@ feature 'User searchs customer' do
     login
     customer = create(:customer)
 
-    visit root_path
+    visit customers_path
 
-    fill_in 'Search customer', with: '81239932006'
+    fill_in 'Buscar Cliente', with: '81239932006'
 
-    click_on 'Search'
+    click_on 'Buscar'
 
     expect(current_path).to eq customer_path(customer)
     expect(page).to have_content customer.name
@@ -25,11 +25,11 @@ feature 'User searchs customer' do
                                  company_name: 'Campus code',
                                  contact_name: 'Alan Djah')
 
-    visit root_path
+    visit customers_path
 
-    fill_in 'Search customer', with: '86584402000104'
+    fill_in 'Buscar Cliente', with: '86584402000104'
 
-    click_on 'Search'
+    click_on 'Buscar'
 
     expect(current_path).to eq customer_path(customer)
     expect(page).to have_content customer.name
@@ -42,11 +42,11 @@ feature 'User searchs customer' do
   scenario 'failure' do
     login
 
-    visit root_path
+    visit customers_path
 
-    fill_in 'Search customer', with: 'aaaaaa'
+    fill_in 'Buscar Cliente', with: 'aaaaaa'
 
-    click_on 'Search'
+    click_on 'Buscar'
 
     expect(page).to have_content 'Customer not found'
   end
