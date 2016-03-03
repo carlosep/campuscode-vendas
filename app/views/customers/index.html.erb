@@ -1,4 +1,10 @@
 <h1 class="ls-title-intro ls-ico-user"><%=t '.customers'%></h1>
+<section class="ls-display-inline-block" id="search_form">
+<%= simple_form_for :search, url: search_customers_path, method: :get do |f| %>
+    <%= f.input :query, label: t('.search_customer') %>
+    <%= f.submit t('.search'), class: 'ls-btn-primary' %>
+<% end %>
+</section>
 <table class="ls-table">
   <thead>
     <tr>

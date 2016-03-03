@@ -32,6 +32,7 @@ pt-BR:
       customer:
         create: Criar
         update: Atualizar
+        index: Buscar
       order:
         create: Criar
         update: Atualizar
